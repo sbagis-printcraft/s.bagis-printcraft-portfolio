@@ -1,10 +1,20 @@
 import { brand } from "@/content/site";
 import { cn } from "@/lib/utils";
+import { SmartImage } from "./SmartImage";
 
-export function Logo({ className }: { className?: string }) {
-  if (brand.logo) {
-    return <img src={brand.logo} alt={`${brand.name} logo`} className={cn("h-10 w-auto", className)} />;
-  }
+export function Logo({ className }: { className?: string | undefined }) {
+  return (
+    <SmartImage
+      src={brand.logo}
+      alt={`${brand.name} logo`}
+      className={cn("h-10 w-auto", className)}
+      fallback={<Wordmark className={className} />}
+    />
+  );
+}
+
+/** Text wordmark used until the supplied logo file is in place. */
+function Wordmark({ className }: { className?: string | undefined }) {
   return (
     <span className={cn("flex items-center gap-2.5", className)}>
       <span

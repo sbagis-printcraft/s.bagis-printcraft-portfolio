@@ -1,11 +1,13 @@
 /**
- * Single source of truth for every word, link and image on the site.
+ * Single source of truth for every word and link on the site.
+ * Image paths live in ./assets.ts.
  *
- * PLACEHOLDER NOTICE: the owner's original brief (exact copy, 16 services,
- * social URLs) and image files have not been received yet. Every string marked
- * `// TODO(brief)` is a stand-in to be swapped for the exact wording, and every
- * `image: undefined` becomes the real supplied asset once it is uploaded.
+ * PLACEHOLDER NOTICE: the owner's original brief lives in a separate ChatGPT
+ * conversation that this project cannot read. Every string marked
+ * `// TODO(brief)` is a stand-in to be replaced with the exact wording.
+ * Social URLs are intentionally empty — never invent contact details.
  */
+import { assets } from "./assets";
 
 export type ProjectCategory =
   | "Branding & Logos"
@@ -25,8 +27,8 @@ export interface Project {
   medium: ProjectMedium;
   year: number;
   description: string;
-  /** URL of the real supplied image; undefined until the owner uploads it. */
-  image?: string;
+  /** Path from the asset map; a missing file shows a "coming soon" frame. */
+  image?: string | undefined;
 }
 
 export interface SocialLink {
@@ -43,9 +45,9 @@ export const brand = {
   tagline: "Print & graphic design that gets noticed", // TODO(brief)
   intro:
     "Logos, flyers, banners and branded print — designed with care and produced to a premium finish.", // TODO(brief)
-  logo: undefined as string | undefined,
-  portrait: undefined as string | undefined,
-  flyer: undefined as string | undefined,
+  logo: assets.logo,
+  portrait: assets.portrait,
+  flyer: assets.flyer,
 };
 
 export const about = {
@@ -82,7 +84,7 @@ export const projectCategories: ProjectCategory[] = [
 
 export const projectMediums: ProjectMedium[] = ["Print", "Digital"];
 
-export const projects: Project[] = [
+const projectList: Omit<Project, "image">[] = [
   { id: "p1", title: "Brand identity", category: "Branding & Logos", medium: "Digital", year: 2026, description: "Logo mark and colour system." },
   { id: "p2", title: "Logo refresh", category: "Branding & Logos", medium: "Print", year: 2025, description: "Updated mark applied to stationery." },
   { id: "p3", title: "Event flyer", category: "Flyers & Posters", medium: "Print", year: 2026, description: "A5 double-sided event flyer." },
@@ -98,6 +100,8 @@ export const projects: Project[] = [
 ];
 
 // TODO(brief): replace with the exact 16 services from the brief.
+export const projects: Project[] = projectList.map((p) => ({ ...p, image: assets.projects[p.id] }));
+
 export const services: string[] = [
   "Logo design",
   "Brand identity",

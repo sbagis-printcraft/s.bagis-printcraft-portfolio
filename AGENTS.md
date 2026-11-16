@@ -30,6 +30,6 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## Project rules
-- All site copy, links and image references live in `src/content/site.ts`; components only read from it, so content swaps never touch layout code.
+- All site copy and links live in `src/content/site.ts` and all image paths in `src/content/assets.ts` (files in `public/assets/`); components only read from them and render images via `SmartImage`, which falls back to a placeholder when a file is missing.
 - Project filtering is a pure function in `src/lib/projects-filter.ts` with tests beside it; UI state only feeds it.
 - Theme is a `dark` class on `<html>`, set pre-paint by an inline script in `__root.tsx` and persisted in localStorage, to avoid a flash of the wrong theme.

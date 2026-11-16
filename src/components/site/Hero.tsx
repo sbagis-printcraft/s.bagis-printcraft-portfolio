@@ -1,6 +1,7 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, UserRound } from "lucide-react";
 import { brand } from "@/content/site";
 import { Button } from "@/components/ui/button";
+import { SmartImage } from "./SmartImage";
 
 export function Hero() {
   return (
@@ -34,26 +35,29 @@ export function Hero() {
         <div className="relative mx-auto w-full max-w-sm">
           <div aria-hidden className="absolute -inset-2 rotate-2 md:-inset-3 md:rotate-3 rounded-[2rem] bg-brand-gradient opacity-90" />
           <figure className="relative overflow-hidden rounded-[1.75rem] border-4 border-background bg-surface shadow-card">
-            {brand.portrait ? (
-              <img
-                src={brand.portrait}
-                alt={`Portrait of the designer behind ${brand.name}`}
-                className="aspect-[4/5] w-full object-cover"
-                width={640}
-                height={800}
-                fetchPriority="high"
-              />
-            ) : (
-              <div
-                role="img"
-                aria-label="Portrait coming soon"
-                className="grid aspect-[4/5] w-full place-items-center registration-grid"
-              >
-                <span className="rounded-full border border-dashed border-primary/50 px-4 py-2 text-sm font-semibold text-muted-foreground">
-                  Portrait coming soon
-                </span>
-              </div>
-            )}
+            <SmartImage
+              src={brand.portrait}
+              alt={`Portrait of the designer behind ${brand.name}`}
+              className="aspect-[4/5] w-full object-cover"
+              width={640}
+              height={800}
+              fetchPriority="high"
+              fallback={
+                <div
+                  role="img"
+                  aria-label="Designer portrait — photo coming soon"
+                  data-portrait-slot="public/assets/portrait.jpg"
+                  className="grid aspect-[4/5] w-full place-items-center registration-grid"
+                >
+                  <span className="flex flex-col items-center gap-3 text-muted-foreground">
+                    <UserRound className="h-14 w-14 text-primary/40" strokeWidth={1.25} aria-hidden />
+                    <span className="rounded-full border border-dashed border-primary/50 px-4 py-2 text-sm font-semibold">
+                      Portrait coming soon
+                    </span>
+                  </span>
+                </div>
+              }
+            />
           </figure>
           <div className="absolute -bottom-5 -left-4 rounded-2xl bg-card px-4 py-3 shadow-card">
             <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Print-ready</p>

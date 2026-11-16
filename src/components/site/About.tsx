@@ -1,5 +1,6 @@
 import { about, brand } from "@/content/site";
 import { SectionHeading } from "./SectionHeading";
+import { SmartImage } from "./SmartImage";
 
 export function About() {
   return (
@@ -23,15 +24,19 @@ export function About() {
           </dl>
         </div>
         <figure className="overflow-hidden rounded-3xl border bg-card shadow-card">
-          {brand.flyer ? (
-            <img src={brand.flyer} alt={`${brand.name} promotional flyer`} className="w-full object-cover" loading="lazy" />
-          ) : (
-            <div role="img" aria-label="Flyer coming soon" className="grid aspect-[3/4] place-items-center registration-grid">
-              <span className="rounded-full border border-dashed border-primary/50 px-4 py-2 text-sm font-semibold text-muted-foreground">
-                Flyer coming soon
-              </span>
-            </div>
-          )}
+          <SmartImage
+            src={brand.flyer}
+            alt={`${brand.name} promotional flyer`}
+            className="w-full object-cover"
+            loading="lazy"
+            fallback={
+              <div role="img" aria-label="Flyer coming soon" className="grid aspect-[3/4] place-items-center registration-grid">
+                <span className="rounded-full border border-dashed border-primary/50 px-4 py-2 text-sm font-semibold text-muted-foreground">
+                  Flyer coming soon
+                </span>
+              </div>
+            }
+          />
         </figure>
       </div>
     </section>
