@@ -7,7 +7,7 @@ export function Logo({ className }: { className?: string | undefined }) {
     <SmartImage
       src={brand.logo}
       alt={`${brand.name} logo`}
-      className={cn("h-10 w-auto", className)}
+      className={cn("h-10 w-auto rounded-lg object-contain", className)}
       fallback={<Wordmark className={className} />}
     />
   );

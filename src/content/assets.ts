@@ -7,12 +7,12 @@
  * always looks finished. Nothing here is generated or stock imagery.
  */
 export const assets = {
-  /** Your logo. PNG or SVG with a transparent background works best. */
-  logo: "/assets/logo.png",
-  /** Your real photo for the hero. Portrait (4:5), at least 800×1000px. */
+  /** Supplied logo file: logob.jpg */
+  logo: "/assets/logob.jpg",
+  /** Hero photo: the portrait cropped from page 1 of Portfolio.pdf, saved as portrait.jpg (4:5). */
   portrait: "/assets/portrait.jpg",
-  /** Your supplied flyer, shown in the About section. */
-  flyer: "/assets/flyer.jpg",
+  /** Supplied flyer file: s.b.jpg — shown in the About section. */
+  flyer: "/assets/s.b.jpg",
   /** Social preview image for shared links (1200×630). Optional. */
   ogImage: "/assets/og-image.jpg",
   /** One image per project, keyed by project id in site.ts. */

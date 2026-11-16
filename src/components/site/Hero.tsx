@@ -46,7 +46,7 @@ export function Hero() {
                 <div
                   role="img"
                   aria-label="Designer portrait — photo coming soon"
-                  data-portrait-slot="public/assets/portrait.jpg"
+                  data-portrait-slot="public/assets/portrait.jpg (from Portfolio.pdf page 1)"
                   className="grid aspect-[4/5] w-full place-items-center registration-grid"
                 >
                   <span className="flex flex-col items-center gap-3 text-muted-foreground">
