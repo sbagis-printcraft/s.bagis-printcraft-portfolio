@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- All site copy, links and image references live in `src/content/site.ts`; components only read from it, so content swaps never touch layout code.
+- Project filtering is a pure function in `src/lib/projects-filter.ts` with tests beside it; UI state only feeds it.
+- Theme is a `dark` class on `<html>`, set pre-paint by an inline script in `__root.tsx` and persisted in localStorage, to avoid a flash of the wrong theme.

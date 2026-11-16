@@ -1,23 +1,57 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { brand, seo, services, socials } from "@/content/site";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { Hero } from "@/components/site/Hero";
+import { About } from "@/components/site/About";
+import { WhyMe } from "@/components/site/WhyMe";
+import { Projects } from "@/components/site/Projects";
+import { Services } from "@/components/site/Services";
+import { Contact } from "@/components/site/Contact";
+import { SiteFooter } from "@/components/site/SiteFooter";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: seo.title },
+      { name: "description", content: seo.description },
+      { property: "og:title", content: seo.title },
+      { property: "og:description", content: seo.description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: seo.title },
+      { name: "twitter:description", content: seo.description },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: brand.name,
+          description: seo.description,
+          slogan: brand.tagline,
+          makesOffer: services.map((name) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name } })),
+          sameAs: socials.map((s) => s.url).filter(Boolean),
+        }),
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <SiteHeader />
+      <main id="main" tabIndex={-1} className="outline-none">
+        <Hero />
+        <About />
+        <WhyMe />
+        <Projects />
+        <Services />
+        <Contact />
+      </main>
+      <SiteFooter />
+    </>
   );
 }
