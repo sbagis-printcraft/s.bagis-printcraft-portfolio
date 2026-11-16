@@ -78,7 +78,7 @@ export const projects: Project[] = (
 
 export const servicesSection = {
   heading: "WE OFFER THE FOLLOWING",
-  cta: "NEED ANY OF THESE SERVICES? LET'S TALK.",
+  cta: "NEED ANY OF THESE SERVICES? LET'S TALK",
 };
 
 export const services: string[] = [

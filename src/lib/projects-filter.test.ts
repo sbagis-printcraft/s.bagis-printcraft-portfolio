@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { navLinks, projects, services, socials, whyMe } from "@/content/site";
+import { navLinks, projects, services, servicesSection, socials, whyMe } from "@/content/site";
 import { filterProjects, projectFilters } from "./projects-filter";
 
 describe("site content", () => {
@@ -25,6 +25,7 @@ describe("site content", () => {
       "https://www.snapchat.com/add/s.bagisprint?share_id=_ffGEuaP8t8&locale=en-US",
       "https://share.google/kS9E1Sa0TXRLEuQVF",
     ]));
+  it("uses the exact services CTA", () => expect(servicesSection.cta).toBe("NEED ANY OF THESE SERVICES? LET'S TALK"));
   it("has the five nav labels", () =>
     expect(navLinks.map((l) => l.label)).toEqual(["HOME", "ABOUT ME", "WHY ME", "PROJECT", "REACH ME"]));
 });

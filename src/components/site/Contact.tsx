@@ -47,6 +47,10 @@ export function Contact() {
                       role="img"
                       aria-label={`QR code for ${s.platform}`}
                     />
+                    <p className="mt-2 break-all text-center text-[0.7rem] font-medium leading-snug text-royal-deep">
+                      <span className="sr-only">Destination: </span>
+                      {s.url}
+                    </p>
                   </div>
                 )}
                 <Button asChild variant="outlineBrand" size="pill" className="mt-5 h-auto whitespace-normal py-2.5 font-bold">

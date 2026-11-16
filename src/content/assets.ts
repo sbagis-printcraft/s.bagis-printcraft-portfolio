@@ -3,7 +3,7 @@
  *
  * Drop each real file into `public/assets/` using the exact filename below
  * (or change the path here to match your file). Any file that is missing
- * shows a clean "coming soon" frame instead of a broken image, so the site
+ * shows a labelled empty frame instead of a broken image, so the site
  * always looks finished. Nothing here is generated or stock imagery.
  */
 export const assets = {

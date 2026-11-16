@@ -40,7 +40,7 @@ export function Projects() {
           {visible.length} projects shown
         </p>
 
-        <ul className="mt-8 grid grid-cols-1 gap-5 min-[480px]:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
           {visible.map((p, i) => (
             <li key={p.id} className="animate-in fade-in zoom-in-95 duration-300">
               <button
@@ -59,9 +59,9 @@ export function Projects() {
                     <Maximize2 className="h-4 w-4" aria-hidden />
                   </span>
                 </div>
-                <div className="p-5">
-                  <p className="text-xs font-bold tracking-[0.18em] text-magenta">{p.group}</p>
-                  <p className="mt-1.5 font-display text-lg font-bold">{p.title}</p>
+                <div className="p-3 sm:p-5">
+                  <p className="text-[0.6rem] font-bold tracking-[0.14em] text-magenta sm:text-xs sm:tracking-[0.18em]">{p.group}</p>
+                  <p className="mt-1 font-display text-sm font-bold leading-snug sm:mt-1.5 sm:text-lg">{p.title}</p>
                 </div>
               </button>
             </li>

@@ -32,7 +32,7 @@ export function ProjectArt({
           <div aria-hidden className="absolute -bottom-12 -left-8 h-44 w-44 rounded-full bg-royal/20 blur-2xl" />
           <span className="relative flex flex-col items-center gap-2 px-4 text-center text-primary">
             <Camera className={large ? "h-12 w-12" : "h-8 w-8"} aria-hidden />
-            <span className={cn("font-display font-extrabold", large ? "text-2xl" : "text-base")}>{project.title}</span>
+            <span className={cn("font-display font-extrabold", large ? "text-2xl" : "hidden text-base sm:block")}>{project.title}</span>
           </span>
         </div>
       }
