@@ -15,19 +15,14 @@ export const assets = {
   flyer: "/assets/s.b.jpg",
   /** Social preview image for shared links (1200×630). Optional. */
   ogImage: "/assets/og-image.jpg",
-  /** One image per project, keyed by project id in site.ts. */
+  /** One photo per work type, keyed by project id in site.ts. */
   projects: {
-    p1: "/assets/projects/p1.jpg",
-    p2: "/assets/projects/p2.jpg",
-    p3: "/assets/projects/p3.jpg",
-    p4: "/assets/projects/p4.jpg",
-    p5: "/assets/projects/p5.jpg",
-    p6: "/assets/projects/p6.jpg",
-    p7: "/assets/projects/p7.jpg",
-    p8: "/assets/projects/p8.jpg",
-    p9: "/assets/projects/p9.jpg",
-    p10: "/assets/projects/p10.jpg",
-    p11: "/assets/projects/p11.jpg",
-    p12: "/assets/projects/p12.jpg",
+    "branded-caps": "/assets/projects/branded-caps.jpg",
+    "barber-salon-signage": "/assets/projects/barber-salon-signage.jpg",
+    "customized-mugs": "/assets/projects/customized-mugs.jpg",
+    "framed-portraits": "/assets/projects/framed-portraits.jpg",
+    souvenirs: "/assets/projects/souvenirs.jpg",
+    "paper-bags": "/assets/projects/paper-bags.jpg",
+    "corporate-branding": "/assets/projects/corporate-branding.jpg",
   } as Record<string, string>,
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { navLinks, brand } from "@/content/site";
+import { navLinks, brand, hero } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
@@ -79,8 +79,8 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-1">
           <ThemeToggle />
-          <Button asChild variant="hero" size="pill" className="hidden sm:inline-flex">
-            <a href="#contact">Get a quote</a>
+          <Button asChild variant="hero" size="pill" className="hidden md:inline-flex">
+            <a href="#contact">{hero.secondaryCta}</a>
           </Button>
           <DialogPrimitive.Root open={open} onOpenChange={setOpen}>
             <DialogPrimitive.Trigger asChild>
@@ -124,7 +124,7 @@ export function SiteHeader() {
                 </nav>
                 <Button asChild variant="hero" size="xl" className="mt-auto">
                   <a href="#contact" onClick={() => setOpen(false)}>
-                    Get a quote
+                    {hero.secondaryCta}
                   </a>
                 </Button>
               </DialogPrimitive.Content>

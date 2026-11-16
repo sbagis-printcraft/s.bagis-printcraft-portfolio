@@ -1,20 +1,10 @@
-import type { Project, ProjectCategory, ProjectMedium } from "@/content/site";
+import type { Project, ProjectGroup } from "@/content/site";
 
-export interface ProjectFilters {
-  category: ProjectCategory | "All";
-  medium: ProjectMedium | "All";
-  query: string;
-}
+export type ProjectFilter = "ALL" | ProjectGroup;
 
-export const defaultFilters: ProjectFilters = { category: "All", medium: "All", query: "" };
+export const projectFilters: ProjectFilter[] = ["ALL", "BRANDING & SIGNAGE", "PRINTS & SOUVENIRS"];
 
-/** All three filters combine (AND). Search matches title, category or description, case-insensitive. */
-export function filterProjects(list: Project[], f: ProjectFilters): Project[] {
-  const q = f.query.trim().toLowerCase();
-  return list.filter((p) => {
-    if (f.category !== "All" && p.category !== f.category) return false;
-    if (f.medium !== "All" && p.medium !== f.medium) return false;
-    if (q && !`${p.title} ${p.category} ${p.description}`.toLowerCase().includes(q)) return false;
-    return true;
-  });
+/** ALL shows every work type; any other filter keeps only that group. */
+export function filterProjects(list: Project[], filter: ProjectFilter): Project[] {
+  return filter === "ALL" ? list : list.filter((p) => p.group === filter);
 }

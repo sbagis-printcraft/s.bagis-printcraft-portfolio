@@ -1,145 +1,144 @@
 /**
- * Single source of truth for every word and link on the site.
- * Image paths live in ./assets.ts.
- *
- * PLACEHOLDER NOTICE: the owner's original brief lives in a separate ChatGPT
- * conversation that this project cannot read. Every string marked
- * `// TODO(brief)` is a stand-in to be replaced with the exact wording.
- * Social URLs are intentionally empty — never invent contact details.
+ * Single source of truth for every word and link on the site — the owner's
+ * exact wording. Image paths live in ./assets.ts.
  */
 import { assets } from "./assets";
 
-export type ProjectCategory =
-  | "Branding & Logos"
-  | "Flyers & Posters"
-  | "Business Cards"
-  | "Banners & Signage"
-  | "Packaging & Labels"
-  | "Apparel & Merch"
-  | "Social Media Design";
-
-export type ProjectMedium = "Print" | "Digital";
+export type ProjectGroup = "BRANDING & SIGNAGE" | "PRINTS & SOUVENIRS";
 
 export interface Project {
   id: string;
   title: string;
-  category: ProjectCategory;
-  medium: ProjectMedium;
-  year: number;
-  description: string;
-  /** Path from the asset map; a missing file shows a "coming soon" frame. */
+  group: ProjectGroup;
+  /** Path from the asset map; a missing file shows a labelled photo frame. */
   image?: string | undefined;
 }
 
 export interface SocialLink {
-  id: "whatsapp" | "instagram" | "facebook" | "tiktok";
+  id: "whatsapp" | "tiktok" | "snapchat" | "google";
+  platform: string;
   label: string;
-  handle: string;
-  /** Full URL. Empty until the owner supplies the exact link. */
   url: string;
 }
 
 export const brand = {
   name: "S.BAGIS PRINTCRAFT",
-  shortName: "S.BAGIS",
-  tagline: "Print & graphic design that gets noticed", // TODO(brief)
-  intro:
-    "Logos, flyers, banners and branded print — designed with care and produced to a premium finish.", // TODO(brief)
+  tagline: "BRANDING • PACKAGING • PRINTING",
   logo: assets.logo,
   portrait: assets.portrait,
   flyer: assets.flyer,
 };
 
-export const about = {
-  heading: "About me", // TODO(brief)
-  body: [
-    "I'm the designer behind S.BAGIS PRINTCRAFT. I help businesses, events and individuals look their best on paper and on screen.", // TODO(brief)
-    "Every project gets the same attention: a clear idea, clean layout, and files that print exactly as intended.", // TODO(brief)
-  ],
-  stats: [
-    { value: "7", label: "Design specialities" },
-    { value: "16", label: "Services offered" },
-    { value: "100%", label: "Print-ready files" },
-  ],
+export const hero = {
+  headline: "Explore My Creative Portfolio",
+  intro:
+    "A creative graphic design and printing business dedicated to helping individuals and businesses bring their ideas to life through quality designs and professional printing.",
+  primaryCta: "EXPLORE MY PROJECTS",
+  secondaryCta: "LET'S WORK TOGETHER",
 };
 
-export const whyMe: { title: string; text: string }[] = [
-  { title: "Original designs", text: "Every piece is made for you — no recycled templates." }, // TODO(brief)
-  { title: "Print-ready files", text: "Correct sizes, bleed and colour so your print comes out right." }, // TODO(brief)
-  { title: "Fast turnaround", text: "Clear timelines and quick revisions when you're on a deadline." }, // TODO(brief)
-  { title: "Fair pricing", text: "Premium quality at prices that work for small businesses." }, // TODO(brief)
-  { title: "Brand consistency", text: "Your colours, fonts and style kept consistent across everything." }, // TODO(brief)
-  { title: "Friendly support", text: "Easy to reach, easy to work with, from first idea to final print." }, // TODO(brief)
-];
+export const about = {
+  heading: "ABOUT ME",
+  bio: "I am a creative and passionate Graphic Designer dedicated to bringing ideas to life through meaningful and visually appealing designs. I help individuals, brands, and businesses communicate their message clearly through creative visuals that are professional, unique, and impactful. With a strong eye for detail and creativity, I create designs that not only look good but also connect with people and leave a lasting impression. My goal is to turn ideas into visuals that inspire, attract, and stand out.",
+  toolsHeading: "MY CREATIVE TOOLS",
+  tools: ["CorelDRAW", "Adobe Photoshop"],
+};
 
-export const projectCategories: ProjectCategory[] = [
-  "Branding & Logos",
-  "Flyers & Posters",
-  "Business Cards",
-  "Banners & Signage",
-  "Packaging & Labels",
-  "Apparel & Merch",
-  "Social Media Design",
-];
+export const whyMe = {
+  heading: "WHY CHOOSE ME?",
+  points: [
+    "Creative thinking with a professional touch.",
+    "Clean, modern, and impactful designs.",
+    "Attention to detail and originality.",
+    "Client satisfaction as a top priority.",
+    "Reliable delivery with consistent quality.",
+    "Strategic visuals that communicate effectively.",
+  ],
+  closing: "Turning ideas into visuals that inspire, connect, and leave an impression.",
+};
 
-export const projectMediums: ProjectMedium[] = ["Print", "Digital"];
+export const projectsSection = {
+  heading: "MY CREATIVE PROJECTS",
+  intro: "Explore some of my creative designs, branding projects, and printing works.",
+};
 
-const projectList: Omit<Project, "image">[] = [
-  { id: "p1", title: "Brand identity", category: "Branding & Logos", medium: "Digital", year: 2026, description: "Logo mark and colour system." },
-  { id: "p2", title: "Logo refresh", category: "Branding & Logos", medium: "Print", year: 2025, description: "Updated mark applied to stationery." },
-  { id: "p3", title: "Event flyer", category: "Flyers & Posters", medium: "Print", year: 2026, description: "A5 double-sided event flyer." },
-  { id: "p4", title: "Promo poster", category: "Flyers & Posters", medium: "Print", year: 2025, description: "A2 promotional poster." },
-  { id: "p5", title: "Business card set", category: "Business Cards", medium: "Print", year: 2026, description: "Two-sided cards with spot finish." },
-  { id: "p6", title: "Roll-up banner", category: "Banners & Signage", medium: "Print", year: 2025, description: "Pull-up banner for exhibitions." },
-  { id: "p7", title: "Shop signage", category: "Banners & Signage", medium: "Print", year: 2024, description: "Shopfront and window graphics." },
-  { id: "p8", title: "Product labels", category: "Packaging & Labels", medium: "Print", year: 2026, description: "Label range for a product line." },
-  { id: "p9", title: "Branded T-shirts", category: "Apparel & Merch", medium: "Print", year: 2025, description: "Apparel print artwork." },
-  { id: "p10", title: "Campaign posts", category: "Social Media Design", medium: "Digital", year: 2026, description: "Post and story set for a launch." },
-  { id: "p11", title: "Menu flyer", category: "Flyers & Posters", medium: "Digital", year: 2024, description: "Menu designed for print and sharing." },
-  { id: "p12", title: "Story templates", category: "Social Media Design", medium: "Digital", year: 2025, description: "Reusable story templates." },
-];
+export const projectGroups: ProjectGroup[] = ["BRANDING & SIGNAGE", "PRINTS & SOUVENIRS"];
 
-// TODO(brief): replace with the exact 16 services from the brief.
-export const projects: Project[] = projectList.map((p) => ({ ...p, image: assets.projects[p.id] }));
+export const projects: Project[] = (
+  [
+    { id: "branded-caps", title: "Branded caps", group: "BRANDING & SIGNAGE" },
+    { id: "barber-salon-signage", title: "Barber and salon signage", group: "BRANDING & SIGNAGE" },
+    { id: "customized-mugs", title: "Customized mugs", group: "PRINTS & SOUVENIRS" },
+    { id: "framed-portraits", title: "Framed portraits", group: "PRINTS & SOUVENIRS" },
+    { id: "souvenirs", title: "Souvenirs", group: "PRINTS & SOUVENIRS" },
+    { id: "paper-bags", title: "Paper bags", group: "PRINTS & SOUVENIRS" },
+    { id: "corporate-branding", title: "Corporate branding", group: "BRANDING & SIGNAGE" },
+  ] satisfies Omit<Project, "image">[]
+).map((p) => ({ ...p, image: assets.projects[p.id] }));
+
+export const servicesSection = {
+  heading: "WE OFFER THE FOLLOWING",
+  cta: "NEED ANY OF THESE SERVICES? LET'S TALK.",
+};
 
 export const services: string[] = [
-  "Logo design",
-  "Brand identity",
-  "Business cards",
-  "Flyers",
-  "Posters",
-  "Brochures",
-  "Banners",
-  "Roll-up banners",
-  "Signage",
-  "Stickers & labels",
-  "Packaging design",
-  "T-shirt printing",
-  "Invitations & cards",
-  "Certificates",
-  "Social media graphics",
-  "Photo printing",
+  "Frame & Surprise",
+  "Flex / SAV Printing",
+  "Wedding Program",
+  "T-Shirt",
+  "Receipt",
+  "Mug Monogramming",
+  "Souvenirs",
+  "Invoice",
+  "Calendar",
+  "Branding",
+  "ID Card",
+  "Paper Bag",
+  "Business Card",
+  "Indoor Signage",
+  "Outdoor Signage",
+  "And many more",
 ];
 
-// TODO(brief): exact handles and URLs. QR codes appear automatically once a URL is set.
+export const contact = {
+  heading: "BRING IN YOUR PROJECT...",
+  intro: "Have a project in mind? Let's work together to turn your ideas into creative designs and quality prints.",
+  showQr: "SHOW QR CODES",
+  hideQr: "HIDE QR CODES",
+};
+
 export const socials: SocialLink[] = [
-  { id: "whatsapp", label: "WhatsApp", handle: "Chat on WhatsApp", url: "" },
-  { id: "instagram", label: "Instagram", handle: "@sbagis.printcraft", url: "" },
-  { id: "facebook", label: "Facebook", handle: "S.BAGIS PRINTCRAFT", url: "" },
-  { id: "tiktok", label: "TikTok", handle: "@sbagis.printcraft", url: "" },
+  { id: "whatsapp", platform: "WhatsApp", label: "CHAT ON WHATSAPP", url: "https://wa.me" },
+  { id: "tiktok", platform: "TikTok", label: "FOLLOW ON TIKTOK", url: "https://tiktok.com" },
+  {
+    id: "snapchat",
+    platform: "Snapchat",
+    label: "CONNECT ON SNAPCHAT",
+    url: "https://www.snapchat.com/add/s.bagisprint?share_id=_ffGEuaP8t8&locale=en-US",
+  },
+  {
+    id: "google",
+    platform: "Google Business Profile",
+    label: "FIND US ON GOOGLE",
+    url: "https://share.google/kS9E1Sa0TXRLEuQVF",
+  },
 ];
 
 export const navLinks = [
-  { id: "home", label: "Home" },
-  { id: "about", label: "About" },
-  { id: "why-me", label: "Why me" },
-  { id: "projects", label: "Projects" },
-  { id: "services", label: "Services" },
-  { id: "contact", label: "Contact" },
+  { id: "home", label: "HOME" },
+  { id: "about", label: "ABOUT ME" },
+  { id: "why-me", label: "WHY ME" },
+  { id: "projects", label: "PROJECT" },
+  { id: "contact", label: "REACH ME" },
 ] as const;
 
+export const footer = {
+  statement: "Bringing your ideas to life through creative designs and quality printing.",
+  copyright: "© 2026 S.BAGIS PRINTCRAFT. All Rights Reserved.",
+};
+
 export const seo = {
-  title: "S.BAGIS PRINTCRAFT — Print & Graphic Design Portfolio",
+  title: "S.BAGIS PRINTCRAFT | Branding, Packaging & Printing",
   description:
-    "Portfolio of S.BAGIS PRINTCRAFT: logos, flyers, business cards, banners, packaging, apparel and social media design.",
+    "Explore S.BAGIS PRINTCRAFT, a creative graphic design and printing brand specialising in branding, packaging, signage, souvenirs, and professional printing services.",
 };
