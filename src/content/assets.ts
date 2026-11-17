@@ -9,7 +9,7 @@
 export const assets = {
   /** Supplied logo file: logob.jpg */
   logo: "/assets/logob.jpg",
-  /** Owner portrait from page 1 of Portfolio.pdf (transparent PNG). Not shown on the page yet. */
+  /** Owner portrait from page 1 of Portfolio.pdf (transparent PNG). Small avatar beside the ABOUT ME heading (never in the hero). */
   portrait: "/assets/portrait.png",
   /** Supplied flyer file: s.b.jpg — shown in the About section. */
   flyer: "/assets/s.b.jpg",

@@ -20,8 +20,8 @@ describe("site content", () => {
   });
   it("uses the exact four social URLs", () =>
     expect(socials.map((s) => s.url)).toEqual([
-      "https://wa.me",
-      "https://tiktok.com",
+      "https://wa.me/qr/QUWHJPPCKMHYF1",
+      "https://www.tiktok.com/@s.bagis_printcraft",
       "https://www.snapchat.com/add/s.bagisprint?share_id=_ffGEuaP8t8&locale=en-US",
       "https://share.google/kS9E1Sa0TXRLEuQVF",
     ]));

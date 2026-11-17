@@ -108,8 +108,8 @@ export const contact = {
 };
 
 export const socials: SocialLink[] = [
-  { id: "whatsapp", platform: "WhatsApp", label: "CHAT ON WHATSAPP", url: "https://wa.me" },
-  { id: "tiktok", platform: "TikTok", label: "FOLLOW ON TIKTOK", url: "https://tiktok.com" },
+  { id: "whatsapp", platform: "WhatsApp", label: "CHAT ON WHATSAPP", url: "https://wa.me/qr/QUWHJPPCKMHYF1" },
+  { id: "tiktok", platform: "TikTok", label: "FOLLOW ON TIKTOK", url: "https://www.tiktok.com/@s.bagis_printcraft" },
   {
     id: "snapchat",
     platform: "Snapchat",
