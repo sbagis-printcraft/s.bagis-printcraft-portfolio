@@ -9,8 +9,8 @@
 export const assets = {
   /** Supplied logo file: logob.jpg */
   logo: "/assets/logob.jpg",
-  /** Hero photo: the portrait cropped from page 1 of Portfolio.pdf, saved as portrait.jpg (4:5). */
-  portrait: "/assets/portrait.jpg",
+  /** Owner portrait from page 1 of Portfolio.pdf (transparent PNG). Not shown on the page yet. */
+  portrait: "/assets/portrait.png",
   /** Supplied flyer file: s.b.jpg — shown in the About section. */
   flyer: "/assets/s.b.jpg",
   /** Social preview image for shared links (1200×630). Optional. */

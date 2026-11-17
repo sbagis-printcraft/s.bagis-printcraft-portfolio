@@ -53,7 +53,7 @@ export function Projects() {
                 aria-haspopup="dialog"
                 className="group block w-full overflow-hidden rounded-3xl border bg-card text-left shadow-card transition-transform duration-300 hover:-translate-y-1"
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-square overflow-hidden">
                   <ProjectArt project={p} className="transition-transform duration-500 group-hover:scale-105" />
                   <span className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-background/90 text-primary opacity-0 shadow-card transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
                     <Maximize2 className="h-4 w-4" aria-hidden />

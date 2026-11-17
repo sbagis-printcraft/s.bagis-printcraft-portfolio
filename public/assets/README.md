@@ -1,19 +1,18 @@
 # Site images
 
-Put your real files here with these names (paths are set in `src/content/assets.ts`):
+Paths are set in `src/content/assets.ts`. Files supplied by the owner (sbagis-assets.zip):
 
-| File | Where it shows |
-| --- | --- |
-| `logob.jpg` | Header and footer logo (your supplied logo) |
-| `portrait.jpg` | Hero photo — the portrait from page 1 of `Portfolio.pdf`, cropped 4:5 |
-| `s.b.jpg` | About section (your supplied flyer) |
-| `og-image.jpg` | Optional link-preview image (1200×630) |
-| `projects/branded-caps.jpg` | Branded caps |
-| `projects/barber-salon-signage.jpg` | Barber and salon signage |
-| `projects/customized-mugs.jpg` | Customized mugs |
-| `projects/framed-portraits.jpg` | Framed portraits |
-| `projects/souvenirs.jpg` | Souvenirs |
-| `projects/paper-bags.jpg` | Paper bags |
-| `projects/corporate-branding.jpg` | Corporate branding |
+| File | Where it shows | Source file |
+| --- | --- | --- |
+| `logob.jpg` | Header and footer logo | `logob.jpg` (white margin trimmed) |
+| `s.b.jpg` | About section | `services-flyer.jpg` |
+| `portrait.png` | Not shown yet | `portrait-from-portfolio.png` |
+| `projects/branded-caps.jpg` | Branded caps | `branded-cap.jpg` |
+| `projects/barber-salon-signage.jpg` | Barber and salon signage | `salon-signage.jpg` |
+| `projects/customized-mugs.jpg` | Customized mugs | `mug-souvenir.jpg` |
+| `projects/framed-portraits.jpg` | Framed portraits | `framed-portrait.jpg` |
+| `projects/paper-bags.jpg` | Paper bags | `paper-bag.jpg` |
+| `projects/corporate-branding.jpg` | Corporate branding | `corporate-branding.jpg` |
+| `projects/souvenirs.jpg` | Souvenirs | still needed |
 
-Missing files show a labelled photo frame — no broken images.
+Project photos are trimmed of the flyer's coloured frame edge. A missing file shows a labelled photo frame.
