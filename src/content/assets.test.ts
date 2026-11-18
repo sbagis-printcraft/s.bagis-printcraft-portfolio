@@ -4,13 +4,21 @@ import { brand, projects } from "./site";
 
 describe("asset map", () => {
   it("serves every image from /assets/", () => {
-    const all = [assets.logo, assets.portrait, assets.flyer, ...Object.values(assets.projects)];
+    const all = [
+      assets.logo,
+      assets.portrait,
+      assets.background,
+      ...Object.values(assets.projects).flatMap((p) => [p.full, p.thumb]),
+    ];
     expect(all.every((p) => p.startsWith("/assets/"))).toBe(true);
   });
-  it("gives every project an image path", () => {
-    expect(projects.every((p) => typeof p.image === "string" && p.image.length > 0)).toBe(true);
+  it("gives every project a full and a thumbnail photo", () => {
+    expect(projects.every((p) => !!p.image && !!p.thumb)).toBe(true);
   });
-  it("points the portrait at the supplied PNG", () => {
-    expect(brand.portrait).toBe("/assets/portrait.png");
+  it("keeps original filenames, URL-encoded so srcset works", () => {
+    expect(assets.projects["branded-cap"]?.full).toBe("/assets/projects/BRANDED%20CAP.jpg");
+  });
+  it("uses the supplied portrait photo in About", () => {
+    expect(brand.portrait).toBe("/assets/about/20260613_190925.jpg");
   });
 });

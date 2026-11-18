@@ -9,7 +9,7 @@ export function SiteFooter() {
     <footer className="bg-royal-deep text-primary-foreground dark:text-foreground">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <SmartImage src={brand.logo} alt={`${brand.name} logo`} className="mb-4 h-12 w-auto rounded-lg object-contain" fallback={null} />
+          <SmartImage src={brand.logo} alt={`${brand.name} logo`} className="mb-4 h-14 w-14 object-contain" loading="lazy" fallback={null} />
           <p className="font-display text-2xl font-extrabold">{brand.name}</p>
           <p className="mt-2 text-xs font-bold tracking-[0.18em] text-magenta">{brand.tagline}</p>
           <p className="mt-4 max-w-xs text-sm opacity-80">{footer.statement}</p>

@@ -21,16 +21,16 @@ export function Contact() {
       <div className="relative mx-auto max-w-6xl px-5">
         <SectionHeading id="contact-title" title={contact.heading} intro={contact.intro} />
 
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ul data-reveal-stagger className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {socials.map((s) => {
             const Icon = socialIcons[s.id];
             return (
-              <li key={s.id} className="flex flex-col rounded-3xl border bg-card p-5 shadow-card">
+              <li key={s.id} className="flex flex-col rounded-2xl border bg-card p-5 transition-[border-color,box-shadow] duration-300 hover:border-primary/30 hover:shadow-card">
                 <div className="flex items-center gap-3">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-brand-gradient text-primary-foreground dark:text-magenta-foreground">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-gradient text-primary-foreground dark:text-magenta-foreground">
                     <Icon className="h-5 w-5" aria-hidden />
                   </span>
-                  <p className="font-display text-lg font-bold leading-tight">{s.platform}</p>
+                  <p className="font-display text-base font-bold leading-tight">{s.platform}</p>
                 </div>
                 {showQr && (
                   <div id={`qr-${s.id}`} className="mt-5 rounded-2xl bg-paper p-3 animate-in fade-in zoom-in-95 duration-300 dark:bg-foreground">

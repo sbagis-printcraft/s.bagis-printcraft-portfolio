@@ -4,15 +4,16 @@ import { filterProjects, projectFilters } from "./projects-filter";
 
 describe("site content", () => {
   it("has six WHY CHOOSE ME points", () => expect(whyMe.points).toHaveLength(6));
-  it("has the seven work types", () =>
+  it("has the eight gallery projects titled by their filenames", () =>
     expect(projects.map((p) => p.title)).toEqual([
-      "Branded caps",
-      "Barber and salon signage",
-      "Customized mugs",
-      "Framed portraits",
-      "Souvenirs",
-      "Paper bags",
-      "Corporate branding",
+      "CUSTOMIZED NYLON",
+      "EXERCISE BOOK",
+      "CIRCLE INDOOR SIGNAGE",
+      "PREMIUM PAPER BAG",
+      "BRANDED CAP",
+      "COMPLIMENTARY CARD",
+      "ARTWORK FRAME",
+      "OUTDOOR SIGNAGE",
     ]));
   it("has 16 services ending with 'And many more'", () => {
     expect(services).toHaveLength(16);
@@ -33,18 +34,19 @@ describe("site content", () => {
 describe("project filters", () => {
   it("offers exactly ALL, BRANDING & SIGNAGE, PRINTS & SOUVENIRS", () =>
     expect(projectFilters).toEqual(["ALL", "BRANDING & SIGNAGE", "PRINTS & SOUVENIRS"]));
-  it("ALL shows all seven", () => expect(filterProjects(projects, "ALL")).toHaveLength(7));
-  it("BRANDING & SIGNAGE shows caps, signage and corporate branding", () =>
+  it("ALL shows all eight", () => expect(filterProjects(projects, "ALL")).toHaveLength(8));
+  it("BRANDING & SIGNAGE shows the indoor sign, cap and outdoor sign", () =>
     expect(filterProjects(projects, "BRANDING & SIGNAGE").map((p) => p.id)).toEqual([
-      "branded-caps",
-      "barber-salon-signage",
-      "corporate-branding",
+      "circle-indoor-signage",
+      "branded-cap",
+      "outdoor-signage",
     ]));
-  it("PRINTS & SOUVENIRS shows mugs, portraits, souvenirs and paper bags", () =>
+  it("PRINTS & SOUVENIRS shows the other five", () =>
     expect(filterProjects(projects, "PRINTS & SOUVENIRS").map((p) => p.id)).toEqual([
-      "customized-mugs",
-      "framed-portraits",
-      "souvenirs",
-      "paper-bags",
+      "customized-nylon",
+      "exercise-book",
+      "premium-paper-bag",
+      "complimentary-card",
+      "artwork-frame",
     ]));
 });

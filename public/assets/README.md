@@ -1,18 +1,13 @@
 # Site images
 
-Paths are set in `src/content/assets.ts`. Files supplied by the owner (sbagis-assets.zip):
+All files come from `S_BAGIS_PRINTCRAFT_WEBSITE_ASSETS.zip`, keep their original filenames, and are resized for the web. Paths are set in `src/content/assets.ts`.
 
-| File | Where it shows | Source file |
-| --- | --- | --- |
-| `logob.jpg` | Header and footer logo | `logob.jpg` (white margin trimmed) |
-| `s.b.jpg` | About section | `services-flyer.jpg` |
-| `portrait.png` | Not shown yet | `portrait-from-portfolio.png` |
-| `projects/branded-caps.jpg` | Branded caps | `branded-cap.jpg` |
-| `projects/barber-salon-signage.jpg` | Barber and salon signage | `salon-signage.jpg` |
-| `projects/customized-mugs.jpg` | Customized mugs | `mug-souvenir.jpg` |
-| `projects/framed-portraits.jpg` | Framed portraits | `framed-portrait.jpg` |
-| `projects/paper-bags.jpg` | Paper bags | `paper-bag.jpg` |
-| `projects/corporate-branding.jpg` | Corporate branding | `corporate-branding.jpg` |
-| `projects/souvenirs.jpg` | Souvenirs | still needed |
+| File | Where it shows |
+| --- | --- |
+| `brand/LOGO.png` | Header and footer logo |
+| `about/20260613_190925.jpg` (+ `-640` copy) | About Me section (owner portrait) |
+| `background/BACKGROUND.jpg` (+ `-800` copy) | Blue patterned background behind the top section and the services band |
+| `projects/<NAME>.jpg` | Fullscreen project viewer |
+| `projects/thumbs/<NAME>.jpg` | Project gallery grid (640px copies) |
 
-Project photos are trimmed of the flyer's coloured frame edge. A missing file shows a labelled photo frame.
+Projects: CUSTOMIZED NYLON, EXERCISE BOOK, CIRCLE INDOOR SIGNAGE, PREMIUM PAPER BAG, BRANDED CAP, COMPLIMENTARY CARD, ARTWORK FRAME, OUTDOOR SIGNAGE.

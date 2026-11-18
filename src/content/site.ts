@@ -10,8 +10,10 @@ export interface Project {
   id: string;
   title: string;
   group: ProjectGroup;
-  /** Path from the asset map; a missing file shows a labelled photo frame. */
+  /** Full-size photo from the asset map. */
   image?: string | undefined;
+  /** Smaller grid copy of the same photo. */
+  thumb?: string | undefined;
 }
 
 export interface SocialLink {
@@ -26,7 +28,7 @@ export const brand = {
   tagline: "BRANDING • PACKAGING • PRINTING",
   logo: assets.logo,
   portrait: assets.portrait,
-  flyer: assets.flyer,
+  portraitSmall: assets.portraitSmall,
 };
 
 export const hero = {
@@ -64,17 +66,19 @@ export const projectsSection = {
 
 export const projectGroups: ProjectGroup[] = ["BRANDING & SIGNAGE", "PRINTS & SOUVENIRS"];
 
+/** Titles are the owner's original photo filenames. */
 export const projects: Project[] = (
   [
-    { id: "branded-caps", title: "Branded caps", group: "BRANDING & SIGNAGE" },
-    { id: "barber-salon-signage", title: "Barber and salon signage", group: "BRANDING & SIGNAGE" },
-    { id: "customized-mugs", title: "Customized mugs", group: "PRINTS & SOUVENIRS" },
-    { id: "framed-portraits", title: "Framed portraits", group: "PRINTS & SOUVENIRS" },
-    { id: "souvenirs", title: "Souvenirs", group: "PRINTS & SOUVENIRS" },
-    { id: "paper-bags", title: "Paper bags", group: "PRINTS & SOUVENIRS" },
-    { id: "corporate-branding", title: "Corporate branding", group: "BRANDING & SIGNAGE" },
-  ] satisfies Omit<Project, "image">[]
-).map((p) => ({ ...p, image: assets.projects[p.id] }));
+    { id: "customized-nylon", title: "CUSTOMIZED NYLON", group: "PRINTS & SOUVENIRS" },
+    { id: "exercise-book", title: "EXERCISE BOOK", group: "PRINTS & SOUVENIRS" },
+    { id: "circle-indoor-signage", title: "CIRCLE INDOOR SIGNAGE", group: "BRANDING & SIGNAGE" },
+    { id: "premium-paper-bag", title: "PREMIUM PAPER BAG", group: "PRINTS & SOUVENIRS" },
+    { id: "branded-cap", title: "BRANDED CAP", group: "BRANDING & SIGNAGE" },
+    { id: "complimentary-card", title: "COMPLIMENTARY CARD", group: "PRINTS & SOUVENIRS" },
+    { id: "artwork-frame", title: "ARTWORK FRAME", group: "PRINTS & SOUVENIRS" },
+    { id: "outdoor-signage", title: "OUTDOOR SIGNAGE", group: "BRANDING & SIGNAGE" },
+  ] satisfies Omit<Project, "image" | "thumb">[]
+).map((p) => ({ ...p, image: assets.projects[p.id]?.full, thumb: assets.projects[p.id]?.thumb }));
 
 export const servicesSection = {
   heading: "WE OFFER THE FOLLOWING",

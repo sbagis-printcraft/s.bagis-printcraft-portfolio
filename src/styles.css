@@ -44,6 +44,8 @@
   --color-ink: var(--ink);
   --color-paper: var(--paper);
   --color-surface: var(--surface);
+  --color-on-pattern: var(--on-pattern);
+  --color-on-pattern-muted: var(--on-pattern-muted);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -78,6 +80,12 @@
   --magenta-foreground: oklch(0.99 0 0);
   --ink: oklch(0.2 0.06 266);
   --paper: oklch(0.99 0.004 264);
+
+  /* text on the supplied blue pattern background (same in both themes) */
+  --on-pattern: oklch(0.99 0 0);
+  --on-pattern-muted: oklch(0.93 0.03 264);
+  --gradient-on-pattern: linear-gradient(120deg, oklch(1 0 0) 35%, oklch(0.87 0.09 7.7) 100%);
+  --pattern-overlay: linear-gradient(180deg, oklch(0.22 0.08 266 / 0.12) 0%, oklch(0.22 0.08 266 / 0.32) 100%);
 
   --background: oklch(0.99 0.004 264);
   --foreground: oklch(0.2 0.06 266);
@@ -151,6 +159,7 @@
     radial-gradient(100% 80% at 0% 100%, oklch(0.62 0.19 264 / 0.28) 0%, transparent 60%);
   --shadow-card-value: 0 1px 2px oklch(0 0 0 / 0.3), 0 16px 40px -18px oklch(0 0 0 / 0.6);
   --shadow-glow-value: 0 18px 44px -14px oklch(0.67 0.2 7.7 / 0.45);
+  --pattern-overlay: linear-gradient(180deg, oklch(0.15 0.04 266 / 0.3) 0%, oklch(0.15 0.04 266 / 0.55) 100%);
 }
 
 @layer base {
@@ -203,10 +212,28 @@
   background-size: 28px 28px;
 }
 @utility section-pad {
-  padding-block: 4.5rem;
+  padding-block: 4rem;
   @media (min-width: 768px) {
-    padding-block: 6.5rem;
+    padding-block: 6rem;
   }
+}
+/* Supplied BACKGROUND.jpg; the URLs come from the asset map via --pattern-sm / --pattern-lg. */
+@utility bg-pattern {
+  background-image: var(--pattern-sm);
+  background-size: cover;
+  background-position: center;
+  @media (min-width: 768px) {
+    background-image: var(--pattern-lg);
+  }
+}
+@utility bg-pattern-overlay {
+  background-image: var(--pattern-overlay);
+}
+@utility text-on-pattern-gradient {
+  background-image: var(--gradient-on-pattern);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 @utility eyebrow {
   font-family: var(--font-sans);
@@ -216,3 +243,29 @@
   text-transform: uppercase;
   color: var(--magenta);
 }
+
+/*
+ * Scroll reveal (see src/lib/use-reveal.ts). Content is only hidden once JS has
+ * added .reveal-ready, so it stays visible without JS and with reduced motion.
+ */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.reveal-ready [data-reveal]:not([data-revealed]),
+.reveal-ready [data-reveal-stagger]:not([data-revealed]) > * {
+  opacity: 0;
+}
+[data-reveal][data-revealed="in"] {
+  animation: reveal-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+[data-reveal-stagger][data-revealed="in"] > * {
+  animation: reveal-up 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+[data-reveal-stagger][data-revealed="in"] > :nth-child(2) { animation-delay: 50ms; }
+[data-reveal-stagger][data-revealed="in"] > :nth-child(3) { animation-delay: 100ms; }
+[data-reveal-stagger][data-revealed="in"] > :nth-child(4) { animation-delay: 150ms; }
+[data-reveal-stagger][data-revealed="in"] > :nth-child(5) { animation-delay: 200ms; }
+[data-reveal-stagger][data-revealed="in"] > :nth-child(6) { animation-delay: 250ms; }
+[data-reveal-stagger][data-revealed="in"] > :nth-child(7) { animation-delay: 300ms; }
+[data-reveal-stagger][data-revealed="in"] > :nth-child(n + 8) { animation-delay: 350ms; }

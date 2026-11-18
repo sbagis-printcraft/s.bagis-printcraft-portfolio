@@ -20,6 +20,8 @@ const buttonVariants = cva(
         magenta: "bg-magenta text-magenta-foreground shadow-glow hover:brightness-110",
         outlineBrand:
           "border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground",
+        outlineLight:
+          "border-2 border-on-pattern/80 text-on-pattern bg-transparent hover:bg-on-pattern hover:text-royal-deep",
         chip: "border border-border bg-card text-foreground hover:border-primary hover:text-primary aria-pressed:bg-primary aria-pressed:text-primary-foreground aria-pressed:border-primary",
       },
       size: {

@@ -3,37 +3,38 @@ import type { Project } from "@/content/site";
 import { cn } from "@/lib/utils";
 import { SmartImage } from "./SmartImage";
 
-/** Shows the supplied project photo, or a frame labelled with the work type until it is added. */
+/** The supplied project photo (responsive), or a quiet labelled frame if the file is missing. */
 export function ProjectArt({
   project,
   className,
   large,
+  sizes,
 }: {
   project: Project;
   className?: string | undefined;
   large?: boolean | undefined;
+  sizes?: string | undefined;
 }) {
+  const srcSet = project.thumb && project.image ? `${project.thumb} 640w, ${project.image} 1280w` : undefined;
   return (
     <SmartImage
       key={project.id}
-      src={project.image}
+      src={large ? project.image : (project.thumb ?? project.image)}
+      srcSet={srcSet}
+      sizes={sizes}
       alt={project.title}
       className={cn("h-full w-full object-cover", className)}
       loading={large ? "eager" : "lazy"}
+      decoding="async"
       draggable={false}
       fallback={
         <div
           role="img"
           aria-label={`${project.title} — photo to be added`}
           data-asset-slot={project.image}
-          className="relative grid h-full w-full place-items-center overflow-hidden bg-surface registration-grid"
+          className="grid h-full w-full place-items-center bg-secondary"
         >
-          <div aria-hidden className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-magenta/20 blur-2xl" />
-          <div aria-hidden className="absolute -bottom-12 -left-8 h-44 w-44 rounded-full bg-royal/20 blur-2xl" />
-          <span className="relative flex flex-col items-center gap-2 px-4 text-center text-primary">
-            <Camera className={large ? "h-12 w-12" : "h-8 w-8"} aria-hidden />
-            <span className={cn("font-display font-extrabold", large ? "text-2xl" : "hidden text-base sm:block")}>{project.title}</span>
-          </span>
+          <Camera className={cn("text-primary/60", large ? "h-12 w-12" : "h-8 w-8")} aria-hidden />
         </div>
       }
     />

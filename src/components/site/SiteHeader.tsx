@@ -43,8 +43,8 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-40 transition-all",
-        scrolled ? "border-b bg-background/85 backdrop-blur-lg" : "bg-transparent",
+        "fixed inset-x-0 top-0 z-40 border-b bg-background/85 backdrop-blur-lg transition-shadow duration-300",
+        scrolled ? "shadow-card" : "border-transparent",
       )}
     >
       <a

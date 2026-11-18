@@ -8,6 +8,7 @@ import { Projects } from "@/components/site/Projects";
 import { Services } from "@/components/site/Services";
 import { Contact } from "@/components/site/Contact";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { useReveal } from "@/lib/use-reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -40,6 +41,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  useReveal();
   return (
     <>
       <SiteHeader />

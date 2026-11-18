@@ -33,3 +33,4 @@ use the editor.
 - All site copy and links live in `src/content/site.ts` and all image paths in `src/content/assets.ts` (files in `public/assets/`); components only read from them and render images via `SmartImage`, which falls back to a placeholder when a file is missing.
 - Project filtering is a pure function in `src/lib/projects-filter.ts` with tests beside it; UI state only feeds it.
 - Theme is a `dark` class on `<html>`, set pre-paint by an inline script in `__root.tsx` and persisted in localStorage, to avoid a flash of the wrong theme.
+- Scroll reveal is opt-in via `data-reveal` / `data-reveal-stagger`, driven by one observer in `src/lib/use-reveal.ts`; CSS only hides elements after JS adds `html.reveal-ready`, so content stays visible without JS or with reduced motion.

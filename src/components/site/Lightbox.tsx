@@ -87,8 +87,15 @@ export function Lightbox({ items, index, onIndexChange, onClosed }: LightboxProp
                 </DialogPrimitive.Close>
               </div>
               <div className="relative w-full max-w-4xl">
-                <div data-lightbox-keep className="aspect-[4/3] max-h-[68vh] w-full overflow-hidden rounded-3xl bg-card shadow-card">
-                  <ProjectArt project={item} large className="object-contain" />
+                <div className="flex h-[min(68vh,42rem)] w-full items-center justify-center">
+                  <div data-lightbox-keep className="flex h-full max-w-full items-center justify-center">
+                    <ProjectArt
+                      project={item}
+                      large
+                      sizes="(min-width: 768px) 900px, 100vw"
+                      className="h-auto max-h-full w-auto max-w-full rounded-2xl object-contain shadow-card"
+                    />
+                  </div>
                 </div>
                 {count > 1 && (
                   <>
