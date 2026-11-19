@@ -111,6 +111,33 @@ export const contact = {
   hideQr: "HIDE QR CODES",
 };
 
+/** Project enquiry pop-up (owner's wording) and the REQUEST A QUOTE form. */
+export const enquiry = {
+  popupTitle: "Have a project in mind? ✨",
+  popupBody:
+    "Let’s turn your ideas into something beautiful. Whether you need branding, printing, signage or customized souvenirs, let’s make it happen.",
+  popupCta: "START YOUR PROJECT",
+  quoteCta: "REQUEST A QUOTE",
+  heading: "REQUEST A QUOTE",
+  intro: "Fill in your details and send them straight to us on WhatsApp.",
+  fields: {
+    name: "Name",
+    whatsapp: "WhatsApp number",
+    service: "Service type",
+    servicePlaceholder: "Choose a service",
+    details: "Project details",
+    quantity: "Quantity (optional)",
+  },
+  submit: "SEND ON WHATSAPP",
+  /**
+   * The business WhatsApp number in international format, digits only (e.g. country
+   * code + number). Not supplied yet — only the wa.me/qr link is known, and that
+   * kind of link can't carry a prefilled message. Once filled in, the form opens
+   * WhatsApp with the message already typed.
+   */
+  whatsappNumber: "",
+};
+
 export const socials: SocialLink[] = [
   { id: "whatsapp", platform: "WhatsApp", label: "CHAT ON WHATSAPP", url: "https://wa.me/qr/QUWHJPPCKMHYF1" },
   { id: "tiktok", platform: "TikTok", label: "FOLLOW ON TIKTOK", url: "https://www.tiktok.com/@s.bagis_printcraft" },

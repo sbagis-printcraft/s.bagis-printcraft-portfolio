@@ -291,3 +291,85 @@
   from { transform: scale(1); }
   to { transform: scale(1.08) translate3d(-1.5%, -1%, 0); }
 }
+
+/*
+ * Abstract motion layer (src/components/site/MotionBackdrop.tsx).
+ * Colours are static gradients for everyone; movement is added only for
+ * no-preference visitors and is transform-only so scrolling stays smooth.
+ */
+:root {
+  --motion-blue: oklch(0.55 0.2 258 / 0.55);
+  --motion-cyan: oklch(0.82 0.13 215 / 0.38);
+  --motion-magenta: oklch(0.65 0.22 7.7 / 0.28);
+  --motion-blue-strong: oklch(0.6 0.19 255 / 0.9);
+  --motion-cyan-strong: oklch(0.86 0.12 210 / 0.85);
+  --motion-magenta-strong: oklch(0.7 0.21 7.7 / 0.85);
+  --motion-deep: oklch(0.3 0.12 266);
+  --motion-highlight: oklch(0.92 0.09 210 / 0.55);
+  --ambient-blue: oklch(0.72 0.14 255 / 0.14);
+  --ambient-cyan: oklch(0.86 0.1 210 / 0.2);
+}
+.dark {
+  --motion-blue: oklch(0.5 0.2 258 / 0.5);
+  --motion-cyan: oklch(0.78 0.13 215 / 0.3);
+  --ambient-blue: oklch(0.5 0.18 258 / 0.18);
+  --ambient-cyan: oklch(0.7 0.12 215 / 0.1);
+}
+.motion-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: layout paint;
+}
+.motion-blob {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--blob-color), transparent);
+}
+.motion-ribbon {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .motion-blob {
+    animation: var(--blob-anim) var(--blob-dur) ease-in-out var(--blob-delay) infinite alternate;
+    will-change: transform;
+  }
+  .motion-sway {
+    animation: ribbon-sway var(--sway-dur) ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  .motion-ribbon {
+    animation: ribbon-flow var(--flow-dur) linear infinite;
+    will-change: transform;
+  }
+  .motion-ribbon[data-reverse] { animation-direction: reverse; }
+  .motion-layer[data-paused] * { animation-play-state: paused; }
+}
+@keyframes blob-a {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate3d(12%, 8%, 0) rotate(25deg) scale(1.12); }
+  100% { transform: translate3d(-6%, 14%, 0) rotate(-15deg) scale(0.95); }
+}
+@keyframes blob-b {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate3d(-14%, 10%, 0) rotate(-30deg) scale(1.18); }
+  100% { transform: translate3d(8%, -8%, 0) rotate(20deg) scale(1.05); }
+}
+@keyframes blob-c {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(0.9); }
+  50% { transform: translate3d(18%, -12%, 0) rotate(40deg) scale(1.1); }
+  100% { transform: translate3d(-10%, -4%, 0) rotate(-20deg) scale(1); }
+}
+@keyframes ribbon-flow {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@keyframes ribbon-sway {
+  from { transform: translate3d(0, -5%, 0) rotate(-2deg); }
+  to { transform: translate3d(0, 6%, 0) rotate(2.5deg); }
+}
