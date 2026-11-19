@@ -28,7 +28,7 @@ export function Services() {
           ))}
         </ul>
         <div data-reveal className="mt-10 flex justify-center">
-          <Button asChild variant="magenta" size="xl" className="h-auto whitespace-normal py-3 text-center transition-all hover:-translate-y-0.5">
+          <Button asChild variant="magenta" size="xl" className="h-auto whitespace-normal py-3 text-center">
             <a href="#contact">
               {servicesSection.cta} <ArrowRight aria-hidden />
             </a>

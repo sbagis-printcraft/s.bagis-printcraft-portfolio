@@ -51,21 +51,22 @@ export function Projects() {
                 }}
                 aria-label={`Open ${p.title} in fullscreen`}
                 aria-haspopup="dialog"
-                className="group block w-full overflow-hidden rounded-2xl border bg-card text-left transition-[translate,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-card"
+                className="group block w-full overflow-hidden rounded-2xl border bg-card text-left transition-[translate,border-color,box-shadow,scale] duration-300 ease-out hover:-translate-y-1 hover:border-primary/30 hover:shadow-card active:scale-[0.98]"
               >
                 <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
                   <ProjectArt
                     project={p}
                     sizes="(min-width: 1024px) 270px, (min-width: 640px) 45vw, 50vw"
-                    className="transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                   />
-                  <span className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-background/90 text-primary opacity-0 shadow-card transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                  <span className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-background/90 text-primary scale-75 opacity-0 shadow-card transition-[opacity,scale] duration-300 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100">
                     <Maximize2 className="h-4 w-4" aria-hidden />
                   </span>
                 </div>
-                <div className="p-3 sm:p-4">
-                  <p className="text-[0.6rem] font-bold tracking-[0.14em] text-magenta sm:text-xs sm:tracking-[0.18em]">{p.group}</p>
-                  <p className="mt-1 font-display text-sm font-bold leading-snug sm:text-base">{p.title}</p>
+                <div className="px-3 py-3 sm:px-4 sm:py-3.5">
+                  <p className="font-display text-sm font-bold leading-snug tracking-tight transition-colors duration-300 group-hover:text-primary sm:text-base">
+                    {p.title}
+                  </p>
                 </div>
               </button>
             </li>

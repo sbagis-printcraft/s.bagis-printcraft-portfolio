@@ -93,7 +93,7 @@ export function Lightbox({ items, index, onIndexChange, onClosed }: LightboxProp
                       project={item}
                       large
                       sizes="(min-width: 768px) 900px, 100vw"
-                      className="h-auto max-h-full w-auto max-w-full rounded-2xl object-contain shadow-card"
+                      className="h-auto max-h-full w-auto max-w-full rounded-2xl object-contain shadow-card animate-in fade-in zoom-in-95 duration-300"
                     />
                   </div>
                 </div>
@@ -124,7 +124,7 @@ export function Lightbox({ items, index, onIndexChange, onClosed }: LightboxProp
               </div>
               <div data-lightbox-keep className="w-full max-w-4xl pt-4 text-primary-foreground dark:text-foreground">
                 <DialogPrimitive.Title className="font-display text-2xl font-extrabold">{item.title}</DialogPrimitive.Title>
-                <DialogPrimitive.Description id="lightbox-desc" className="mt-1 text-sm font-bold tracking-[0.18em] text-magenta">
+                <DialogPrimitive.Description id="lightbox-desc" className="sr-only">
                   {item.group}
                 </DialogPrimitive.Description>
               </div>

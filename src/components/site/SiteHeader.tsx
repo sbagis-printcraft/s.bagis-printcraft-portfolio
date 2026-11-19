@@ -5,6 +5,20 @@ import { navLinks, brand, hero } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
+
+/** Logo with the brand name beside it; the supplied logo artwork itself is untouched. */
+function BrandLockup() {
+  const [first, ...rest] = brand.name.split(" ");
+  return (
+    <span className="flex items-center gap-2.5">
+      <Logo className="transition-transform duration-500 ease-out group-hover:rotate-[-8deg] group-hover:scale-105" />
+      <span className="flex flex-col font-display font-extrabold leading-none tracking-tight">
+        <span className="text-lg text-foreground sm:text-xl">{first}</span>
+        <span className="mt-1 text-[0.62rem] tracking-[0.3em] text-magenta sm:text-[0.7rem]">{rest.join(" ")}</span>
+      </span>
+    </span>
+  );
+}
 import { ThemeToggle } from "./ThemeToggle";
 
 function useActiveSection(ids: readonly string[]) {
@@ -43,7 +57,7 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-40 border-b bg-background/85 backdrop-blur-lg transition-shadow duration-300",
+        "fixed inset-x-0 top-0 z-40 border-b bg-background/85 backdrop-blur-lg transition-shadow duration-300 animate-in fade-in slide-in-from-top-2 duration-500",
         scrolled ? "shadow-card" : "border-transparent",
       )}
     >
@@ -54,8 +68,8 @@ export function SiteHeader() {
         Skip to content
       </a>
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:h-20">
-        <a href="#home" aria-label={`${brand.name} — back to top`}>
-          <Logo />
+        <a href="#home" aria-label={`${brand.name} — back to top`} className="group rounded-xl">
+          <BrandLockup />
         </a>
 
         <nav aria-label="Main" className="hidden lg:block">
@@ -66,7 +80,7 @@ export function SiteHeader() {
                   href={`#${l.id}`}
                   aria-current={active === l.id ? "true" : undefined}
                   className={cn(
-                    "rounded-full px-4 py-2 text-sm font-semibold transition-colors hover:text-primary",
+                    "relative rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-300 hover:bg-secondary/70 hover:text-primary",
                     active === l.id ? "bg-secondary text-primary" : "text-muted-foreground",
                   )}
                 >
@@ -96,7 +110,7 @@ export function SiteHeader() {
               >
                 <div className="flex items-center justify-between">
                   <DialogPrimitive.Title className="sr-only">Site menu</DialogPrimitive.Title>
-                  <Logo />
+                  <BrandLockup />
                   <DialogPrimitive.Close asChild>
                     <Button variant="ghost" size="iconLg" aria-label="Close menu">
                       <X aria-hidden />
@@ -112,7 +126,7 @@ export function SiteHeader() {
                           onClick={() => setOpen(false)}
                           aria-current={active === l.id ? "true" : undefined}
                           className={cn(
-                            "block rounded-xl px-4 py-3 font-display text-2xl font-bold transition-colors hover:bg-secondary",
+                            "block rounded-xl px-4 py-3 font-display text-2xl font-bold transition-[background-color,color,translate] duration-300 hover:translate-x-1 hover:bg-secondary",
                             active === l.id ? "text-magenta" : "text-foreground",
                           )}
                         >

@@ -175,6 +175,7 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
@@ -269,3 +270,24 @@
 [data-reveal-stagger][data-revealed="in"] > :nth-child(6) { animation-delay: 250ms; }
 [data-reveal-stagger][data-revealed="in"] > :nth-child(7) { animation-delay: 300ms; }
 [data-reveal-stagger][data-revealed="in"] > :nth-child(n + 8) { animation-delay: 350ms; }
+
+/* Hero entrance: children rise in one after another on first paint. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-stagger > * {
+    animation: reveal-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .hero-stagger > :nth-child(2) { animation-delay: 90ms; }
+  .hero-stagger > :nth-child(3) { animation-delay: 180ms; }
+  .hero-stagger > :nth-child(4) { animation-delay: 270ms; }
+  .hero-stagger > :nth-child(5) { animation-delay: 360ms; }
+
+  /* Very slow zoom on the hero pattern; transform-only so it stays on the GPU. */
+  .pattern-drift {
+    animation: pattern-drift 28s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+}
+@keyframes pattern-drift {
+  from { transform: scale(1); }
+  to { transform: scale(1.08) translate3d(-1.5%, -1%, 0); }
+}

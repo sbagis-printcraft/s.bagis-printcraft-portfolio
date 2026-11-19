@@ -24,7 +24,11 @@ export function ThemeToggle() {
       aria-pressed={theme === "dark"}
       title={theme ? `Switch to ${next} mode` : "Toggle colour theme"}
     >
-      {theme === "dark" ? <Sun aria-hidden /> : <Moon aria-hidden />}
+      {theme === "dark" ? (
+        <Sun key="sun" aria-hidden className="animate-in fade-in spin-in-90 duration-300" />
+      ) : (
+        <Moon key="moon" aria-hidden className="animate-in fade-in spin-in-90 duration-300" />
+      )}
     </Button>
   );
 }
