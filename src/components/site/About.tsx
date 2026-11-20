@@ -1,11 +1,13 @@
 import { about, brand } from "@/content/site";
 import { SectionHeading } from "./SectionHeading";
 import { SmartImage } from "./SmartImage";
+import { MotionBackdrop } from "./MotionBackdrop";
 
 export function About() {
   return (
-    <section id="about" aria-labelledby="about-title" className="section-pad bg-surface">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 md:grid-cols-[1.15fr_1fr] md:items-center md:gap-16">
+    <section id="about" aria-labelledby="about-title" className="section-pad relative overflow-hidden bg-surface">
+      <MotionBackdrop variant="ambient" />
+      <div className="relative mx-auto grid max-w-6xl gap-10 px-5 md:grid-cols-[1.15fr_1fr] md:items-center md:gap-16">
         <div>
           <SectionHeading id="about-title" title={about.heading} />
           <p data-reveal className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">

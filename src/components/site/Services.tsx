@@ -2,11 +2,13 @@ import { ArrowRight, Check } from "lucide-react";
 import { services, servicesSection } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import { PatternBackdrop } from "./PatternBackdrop";
+import { MotionBackdrop } from "./MotionBackdrop";
 
 export function Services() {
   return (
     <section id="services" aria-labelledby="services-title" className="section-pad relative overflow-hidden text-on-pattern">
       <PatternBackdrop overlayClassName="opacity-100" />
+      <MotionBackdrop variant="band" />
       <div className="relative mx-auto max-w-6xl px-5">
         <div data-reveal>
           <span aria-hidden className="mx-auto block h-1 w-10 rounded-full bg-magenta" />

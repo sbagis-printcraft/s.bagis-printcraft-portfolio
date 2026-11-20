@@ -2,11 +2,13 @@ import { ArrowRight } from "lucide-react";
 import { brand, hero } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import { PatternBackdrop } from "./PatternBackdrop";
+import { MotionBackdrop } from "./MotionBackdrop";
 
 export function Hero() {
   return (
     <section id="home" aria-labelledby="hero-title" className="relative overflow-hidden pt-28 md:pt-36">
       <PatternBackdrop drift />
+      <MotionBackdrop variant="hero" />
       <div className="relative mx-auto max-w-3xl px-5 pb-20 text-center md:pb-28">
         <div className="hero-stagger">
           <p className="font-display text-3xl font-extrabold leading-none tracking-tight text-on-pattern drop-shadow-sm sm:text-4xl md:text-5xl">{brand.name}</p>

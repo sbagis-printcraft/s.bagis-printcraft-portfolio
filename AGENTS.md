@@ -34,3 +34,5 @@ use the editor.
 - Project filtering is a pure function in `src/lib/projects-filter.ts` with tests beside it; UI state only feeds it.
 - Theme is a `dark` class on `<html>`, set pre-paint by an inline script in `__root.tsx` and persisted in localStorage, to avoid a flash of the wrong theme.
 - Scroll reveal is opt-in via `data-reveal` / `data-reveal-stagger`, driven by one observer in `src/lib/use-reveal.ts`; CSS only hides elements after JS adds `html.reveal-ready`, so content stays visible without JS or with reduced motion.
+- Enquiry logic (validation, WhatsApp message/link, pop-up pacing) is pure code in `src/lib/enquiry.ts` with tests beside it; `Quote.tsx` and `EnquiryPrompts.tsx` only render and store pacing state in localStorage, since there is no backend.
+- Background motion lives only in `MotionBackdrop.tsx` + the motion block in `styles.css`: transform-only CSS/SVG, paused off screen, animations declared only under `prefers-reduced-motion: no-preference` so the global reduced-motion override can't make infinite loops flicker.

@@ -4,6 +4,7 @@ import { ExternalLink, Ghost, MapPin, MessageCircle, Music2, QrCode } from "luci
 import { contact, socials, type SocialLink } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "./SectionHeading";
+import { MotionBackdrop } from "./MotionBackdrop";
 
 export const socialIcons: Record<SocialLink["id"], typeof MessageCircle> = {
   whatsapp: MessageCircle,
@@ -18,6 +19,7 @@ export function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-title" className="section-pad relative overflow-hidden">
       <div aria-hidden className="absolute inset-0 bg-hero-glow" />
+      <MotionBackdrop variant="ambient" />
       <div className="relative mx-auto max-w-6xl px-5">
         <SectionHeading id="contact-title" title={contact.heading} intro={contact.intro} />
 
