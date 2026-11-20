@@ -74,7 +74,7 @@ const variants: Record<"hero" | "band" | "ambient", { ribbons: Ribbon[]; blobs: 
       { className: "-left-[30%] top-[-20%] h-[50vmax] w-[70vmax]", color: "var(--ambient-blue)", anim: "blob-a", dur: 46 },
       { className: "right-[-30%] bottom-[-25%] h-[45vmax] w-[60vmax]", color: "var(--ambient-cyan)", anim: "blob-b", dur: 54, delay: -25 },
     ],
-    ribbons: [],
+    ribbons: [{ base: 220, amp: 55, thick: 60, phase: 2.6, tone: "blue", opacity: 0.1, flow: 90, sway: 26 }],
   },
 };
 

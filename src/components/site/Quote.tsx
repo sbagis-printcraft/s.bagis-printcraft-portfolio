@@ -87,12 +87,12 @@ export function Quote() {
       <div className="relative mx-auto grid max-w-6xl gap-10 px-5 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <div>
           <SectionHeading id="quote-title" title={enquiry.heading} intro={enquiry.intro} />
-          <p data-reveal className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
+          <p data-reveal="left" className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
             {enquiry.popupBody}
           </p>
         </div>
 
-        <div data-reveal className="rounded-3xl border bg-card/90 p-5 shadow-card backdrop-blur-sm sm:p-8">
+        <div data-reveal="right" className="rounded-3xl border bg-card/90 p-5 shadow-card backdrop-blur-sm sm:p-8">
           <form ref={formRef} noValidate onSubmit={onSubmit} className="grid gap-5 sm:grid-cols-2">
             <div className="sm:col-span-1">
               <label htmlFor="quote-name" className="mb-1.5 block text-sm font-bold">{enquiry.fields.name}</label>
@@ -133,7 +133,7 @@ export function Quote() {
             </div>
             <div className="flex items-end sm:col-span-1">
               <Button type="submit" variant="magenta" size="xl" className="w-full">
-                <MessageCircle aria-hidden /> {enquiry.submit}
+                <MessageCircle aria-hidden className="group-hover/btn:-rotate-12 group-hover/btn:scale-110" /> {enquiry.submit}
               </Button>
             </div>
           </form>

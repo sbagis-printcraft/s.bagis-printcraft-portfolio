@@ -11,18 +11,18 @@ export function Services() {
       <MotionBackdrop variant="band" />
       <div className="relative mx-auto max-w-6xl px-5">
         <div data-reveal>
-          <span aria-hidden className="mx-auto block h-1 w-10 rounded-full bg-magenta" />
+          <span aria-hidden className="reveal-bar mx-auto block h-1 w-10 rounded-full bg-magenta" />
           <h2 id="services-title" className="mt-4 text-center text-3xl font-extrabold md:text-4xl">
             {servicesSection.heading}
           </h2>
         </div>
-        <ul data-reveal-stagger className="mt-10 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
+        <ul data-reveal-stagger="zoom" className="mt-10 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
           {services.map((s) => (
             <li
               key={s}
-              className="flex items-center gap-2.5 rounded-xl border border-on-pattern/15 bg-royal-deep/60 px-3 py-3 backdrop-blur-sm transition-colors duration-300 hover:border-magenta sm:gap-3 sm:px-4 sm:py-3.5"
+              className="group flex items-center gap-2.5 rounded-xl border border-on-pattern/15 bg-royal-deep/60 px-3 py-3 backdrop-blur-sm transition-[border-color,translate,background-color] duration-300 hover:-translate-y-0.5 hover:border-magenta hover:bg-royal-deep/75 sm:gap-3 sm:px-4 sm:py-3.5"
             >
-              <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-magenta text-magenta-foreground">
+              <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-magenta text-magenta-foreground transition-transform duration-300 group-hover:scale-115 group-hover:rotate-[-8deg]">
                 <Check className="h-3.5 w-3.5" aria-hidden />
               </span>
               <span className="text-sm font-semibold leading-snug sm:text-base">{s}</span>
@@ -32,7 +32,7 @@ export function Services() {
         <div data-reveal className="mt-10 flex justify-center">
           <Button asChild variant="magenta" size="xl" className="h-auto whitespace-normal py-3 text-center">
             <a href="#contact">
-              {servicesSection.cta} <ArrowRight aria-hidden />
+              {servicesSection.cta} <ArrowRight aria-hidden className="group-hover/btn:translate-x-1" />
             </a>
           </Button>
         </div>

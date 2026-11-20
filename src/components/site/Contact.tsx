@@ -23,13 +23,13 @@ export function Contact() {
       <div className="relative mx-auto max-w-6xl px-5">
         <SectionHeading id="contact-title" title={contact.heading} intro={contact.intro} />
 
-        <ul data-reveal-stagger className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ul data-reveal-stagger="zoom" className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {socials.map((s) => {
             const Icon = socialIcons[s.id];
             return (
-              <li key={s.id} className="flex flex-col rounded-2xl border bg-card p-5 transition-[border-color,box-shadow] duration-300 hover:border-primary/30 hover:shadow-card">
+              <li key={s.id} className="group flex flex-col rounded-2xl border bg-card/90 p-5 backdrop-blur-sm transition-[translate,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-card">
                 <div className="flex items-center gap-3">
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-gradient text-primary-foreground dark:text-magenta-foreground">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-gradient text-primary-foreground transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110 dark:text-magenta-foreground">
                     <Icon className="h-5 w-5" aria-hidden />
                   </span>
                   <p className="font-display text-base font-bold leading-tight">{s.platform}</p>
@@ -66,7 +66,7 @@ export function Contact() {
           })}
         </ul>
 
-        <div className="mt-8 flex justify-center">
+        <div data-reveal className="mt-8 flex justify-center">
           <Button
             variant="hero"
             size="xl"

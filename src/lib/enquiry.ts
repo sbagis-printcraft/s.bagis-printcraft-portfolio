@@ -58,27 +58,46 @@ export function whatsappEnquiryHref(
 /* ---------- pop-up pacing (no nagging) ---------- */
 
 export const POPUP_KEY = "sbagis-enquiry-prompt";
+/** After the visitor closes the pop-up (or uses its button), stay quiet this long. */
 export const POPUP_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
-export const POPUP_MIN_DELAY_MS = 12_000;
-export const POPUP_MAX_DELAY_MS = 35_000;
-export const POPUP_SCROLL_DEPTH = 0.45;
+/** After an enquiry is sent, stay quiet this long. */
+export const POPUP_SUBMITTED_QUIET_MS = 30 * 24 * 60 * 60 * 1000;
+/** Shows after this long on the page… */
+export const POPUP_DELAY_MS = 9_000;
+/** …or sooner once the visitor has scrolled this far (but never in the first seconds). */
+export const POPUP_SCROLL_DEPTH = 0.3;
+export const POPUP_MIN_DELAY_MS = 3_000;
+/** `?popup=1` shows it ~1.5s after load, ignoring past dismissals — for checking it in a fresh session. */
+export const POPUP_FORCE_DELAY_MS = 1_500;
 
 export interface PromptState {
-  shownAt?: number | undefined;
+  dismissedAt?: number | undefined;
   submittedAt?: number | undefined;
 }
 
-/** Never after an enquiry was sent; at most once per cooldown period. */
-export function popupAllowed(now: number, state: PromptState): boolean {
-  if (state.submittedAt) return false;
-  if (state.shownAt && now - state.shownAt < POPUP_COOLDOWN_MS) return false;
+/** Quiet for a week after it was closed and for a month after an enquiry was sent. */
+export function popupAllowed(now: number, state: PromptState, forced = false): boolean {
+  if (forced) return true;
+  if (state.submittedAt && now - state.submittedAt < POPUP_SUBMITTED_QUIET_MS) return false;
+  if (state.dismissedAt && now - state.dismissedAt < POPUP_COOLDOWN_MS) return false;
   return true;
 }
 
-/** Not on load: after a minimum delay once the visitor has scrolled a while, or after the longer delay. */
-export function popupMoment(elapsedMs: number, scrollDepth: number): boolean {
-  if (elapsedMs < POPUP_MIN_DELAY_MS) return false;
-  return scrollDepth >= POPUP_SCROLL_DEPTH || elapsedMs >= POPUP_MAX_DELAY_MS;
+/** Not on load: after ~9 seconds, or once the visitor has scrolled 30% of the page (after 3 seconds). */
+export function popupMoment(elapsedMs: number, scrollDepth: number, forced = false): boolean {
+  if (forced) return elapsedMs >= POPUP_FORCE_DELAY_MS;
+  if (elapsedMs >= POPUP_DELAY_MS) return true;
+  return elapsedMs >= POPUP_MIN_DELAY_MS && scrollDepth >= POPUP_SCROLL_DEPTH;
+}
+
+/** How far down the page the visitor is, 0 (top) to 1 (bottom). */
+export function scrollDepth(scrollY: number, viewportHeight: number, pageHeight: number): number {
+  const scrollable = pageHeight - viewportHeight;
+  return scrollable <= 0 ? 1 : Math.min(1, Math.max(0, scrollY / scrollable));
+}
+
+export function popupForced(search: string): boolean {
+  return new URLSearchParams(search).get("popup") === "1";
 }
 
 export function readPromptState(): PromptState {

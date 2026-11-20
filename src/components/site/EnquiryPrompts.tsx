@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { FileText, X } from "lucide-react";
 import { enquiry } from "@/content/site";
-import { popupAllowed, popupMoment, readPromptState, writePromptState } from "@/lib/enquiry";
+import { popupAllowed, popupForced, popupMoment, readPromptState, scrollDepth, writePromptState } from "@/lib/enquiry";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -41,32 +41,36 @@ export function EnquiryPrompts() {
   }, []);
 
   useEffect(() => {
-    if (!popupAllowed(Date.now(), readPromptState())) return;
+    const forced = popupForced(window.location.search);
+    if (!popupAllowed(Date.now(), readPromptState(), forced)) return;
     const start = Date.now();
     const timer = window.setInterval(() => {
-      const doc = document.documentElement;
-      const depth = (window.scrollY + window.innerHeight) / Math.max(doc.scrollHeight, 1);
-      if (!popupMoment(Date.now() - start, depth)) return;
-      // Never interrupt the photo viewer, the menu, or someone already at the form.
-      if (document.querySelector('[role="dialog"]') || quoteVisibleRef.current) return;
-      if (!popupAllowed(Date.now(), readPromptState())) return window.clearInterval(timer);
+      const depth = scrollDepth(window.scrollY, window.innerHeight, document.documentElement.scrollHeight);
+      if (!popupMoment(Date.now() - start, depth, forced)) return;
+      // Wait (don't give up) while the photo viewer or menu is open, or the visitor is at the form.
+      if (document.querySelector('[role="dialog"][data-state="open"]') || quoteVisibleRef.current) return;
       window.clearInterval(timer);
-      writePromptState({ shownAt: Date.now() });
       setPopupOpen(true);
-    }, 1000);
+    }, 500);
     return () => window.clearInterval(timer);
   }, []);
+
+  const changePopup = (open: boolean) => {
+    setPopupOpen(open);
+    if (!open) writePromptState({ dismissedAt: Date.now() });
+  };
 
   const showFloating = !heroVisible && !quoteVisible && !popupOpen;
 
   return (
     <>
-      <DialogPrimitive.Root open={popupOpen} onOpenChange={setPopupOpen} modal={false}>
+      <DialogPrimitive.Root open={popupOpen} onOpenChange={changePopup} modal={false}>
         <DialogPrimitive.Portal>
           <DialogPrimitive.Content
             onOpenAutoFocus={(e) => e.preventDefault()}
             onInteractOutside={(e) => e.preventDefault()}
-            className="fixed inset-x-3 bottom-3 z-40 overflow-hidden rounded-3xl border bg-card p-5 pr-12 text-card-foreground shadow-card outline-none data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-bottom-6 data-[state=open]:duration-500 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-bottom-4 sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-[24rem] sm:p-6 sm:pr-14"
+            data-enquiry-popup
+            className="fixed inset-x-3 bottom-3 z-[45] overflow-hidden rounded-3xl border bg-card p-5 pr-12 text-card-foreground shadow-card outline-none data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-bottom-6 data-[state=open]:duration-500 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-bottom-4 sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-[24rem] sm:p-6 sm:pr-14"
           >
             <span aria-hidden className="absolute inset-x-0 top-0 h-1 bg-brand-gradient" />
             <DialogPrimitive.Title className="font-display text-xl font-extrabold leading-tight">{enquiry.popupTitle}</DialogPrimitive.Title>
@@ -77,7 +81,7 @@ export function EnquiryPrompts() {
               <a
                 href="#quote"
                 onClick={() => {
-                  setPopupOpen(false);
+                  changePopup(false);
                   goToQuote();
                 }}
               >

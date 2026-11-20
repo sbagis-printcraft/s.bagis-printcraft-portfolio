@@ -1,11 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { enquiry, socials } from "@/content/site";
 import {
-  POPUP_COOLDOWN_MS,
   buildEnquiryMessage,
   enquirySchema,
   popupAllowed,
+  popupForced,
   popupMoment,
+  scrollDepth,
   whatsappEnquiryHref,
 } from "./enquiry";
 
@@ -55,19 +56,38 @@ describe("enquiry form", () => {
 
 describe("enquiry pop-up pacing", () => {
   const now = 1_800_000_000_000;
-  it("never shows on page load", () => {
+  const day = 24 * 60 * 60 * 1000;
+  it("never shows in the first seconds", () => {
     expect(popupMoment(0, 1)).toBe(false);
-    expect(popupMoment(5_000, 1)).toBe(false);
+    expect(popupMoment(2_500, 1)).toBe(false);
   });
-  it("shows after scrolling a while, or after the longer delay", () => {
-    expect(popupMoment(15_000, 0.5)).toBe(true);
-    expect(popupMoment(15_000, 0.1)).toBe(false);
-    expect(popupMoment(40_000, 0)).toBe(true);
+  it("shows after 9 seconds even without scrolling", () => {
+    expect(popupMoment(8_900, 0)).toBe(false);
+    expect(popupMoment(9_000, 0)).toBe(true);
   });
-  it("does not repeat within a week, and never after an enquiry was sent", () => {
+  it("shows sooner once the visitor scrolls 30% of the page", () => {
+    expect(popupMoment(4_000, 0.3)).toBe(true);
+    expect(popupMoment(4_000, 0.2)).toBe(false);
+  });
+  it("measures scroll depth from top (0) to bottom (1)", () => {
+    expect(scrollDepth(0, 800, 5800)).toBe(0);
+    expect(scrollDepth(1500, 800, 5800)).toBe(0.3);
+    expect(scrollDepth(5000, 800, 5800)).toBe(1);
+  });
+  it("stays quiet for 7 days after it was closed", () => {
     expect(popupAllowed(now, {})).toBe(true);
-    expect(popupAllowed(now, { shownAt: now - 60_000 })).toBe(false);
-    expect(popupAllowed(now, { shownAt: now - POPUP_COOLDOWN_MS - 1 })).toBe(true);
-    expect(popupAllowed(now, { submittedAt: now - POPUP_COOLDOWN_MS * 10 })).toBe(false);
+    expect(popupAllowed(now, { dismissedAt: now - 6 * day })).toBe(false);
+    expect(popupAllowed(now, { dismissedAt: now - 7 * day - 1 })).toBe(true);
+  });
+  it("stays quiet for 30 days after an enquiry was sent", () => {
+    expect(popupAllowed(now, { submittedAt: now - 29 * day })).toBe(false);
+    expect(popupAllowed(now, { submittedAt: now - 30 * day - 1 })).toBe(true);
+  });
+  it("?popup=1 shows it after 1.5 seconds regardless of past visits", () => {
+    expect(popupForced("?popup=1")).toBe(true);
+    expect(popupForced("")).toBe(false);
+    expect(popupAllowed(now, { dismissedAt: now, submittedAt: now }, true)).toBe(true);
+    expect(popupMoment(1_500, 0, true)).toBe(true);
+    expect(popupMoment(1_000, 0, true)).toBe(false);
   });
 });

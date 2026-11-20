@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { SectionHeading } from "./SectionHeading";
 import { ProjectArt } from "./ProjectArt";
 import { Lightbox } from "./Lightbox";
+import { MotionBackdrop } from "./MotionBackdrop";
 
 export function Projects() {
   const [filter, setFilter] = useState<ProjectFilter>("ALL");
@@ -14,8 +15,9 @@ export function Projects() {
   const visible = useMemo(() => filterProjects(projects, filter), [filter]);
 
   return (
-    <section id="projects" aria-labelledby="projects-title" className="section-pad bg-surface">
-      <div className="mx-auto max-w-6xl px-5">
+    <section id="projects" aria-labelledby="projects-title" className="section-pad relative overflow-hidden bg-surface">
+      <MotionBackdrop variant="ambient" />
+      <div className="relative mx-auto max-w-6xl px-5">
         <SectionHeading id="projects-title" title={projectsSection.heading} intro={projectsSection.intro} />
 
         <div data-reveal role="group" aria-label="Filter projects" className="mt-8 flex flex-wrap gap-2">
@@ -40,7 +42,7 @@ export function Projects() {
           {visible.length} projects shown
         </p>
 
-        <ul data-reveal-stagger className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+        <ul key={filter} data-reveal-stagger="zoom" data-revealed="in" className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {visible.map((p, i) => (
             <li key={p.id}>
               <button

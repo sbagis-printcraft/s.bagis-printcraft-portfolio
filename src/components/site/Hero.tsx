@@ -12,7 +12,7 @@ export function Hero() {
       <div className="relative mx-auto max-w-3xl px-5 pb-20 text-center md:pb-28">
         <div className="hero-stagger">
           <p className="font-display text-3xl font-extrabold leading-none tracking-tight text-on-pattern drop-shadow-sm sm:text-4xl md:text-5xl">{brand.name}</p>
-          <p className="mt-4 inline-flex rounded-full border border-on-pattern/25 bg-on-pattern/10 px-3 py-1.5 text-[0.7rem] font-bold tracking-[0.18em] text-on-pattern backdrop-blur sm:text-xs">
+          <p className="float-soft mt-4 inline-flex rounded-full border border-on-pattern/25 bg-on-pattern/10 px-3 py-1.5 text-[0.7rem] font-bold tracking-[0.18em] text-on-pattern backdrop-blur sm:text-xs">
             {brand.tagline}
           </p>
           <h1 id="hero-title" className="mx-auto mt-7 max-w-2xl text-3xl font-extrabold leading-[1.08] sm:text-4xl lg:text-5xl">
@@ -22,7 +22,7 @@ export function Hero() {
           <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Button asChild variant="magenta" size="xl">
               <a href="#projects">
-                {hero.primaryCta} <ArrowRight aria-hidden />
+                {hero.primaryCta} <ArrowRight aria-hidden className="group-hover/btn:translate-x-1" />
               </a>
             </Button>
             <Button asChild variant="outlineLight" size="xl">

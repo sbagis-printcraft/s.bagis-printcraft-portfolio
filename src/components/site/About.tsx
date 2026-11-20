@@ -10,21 +10,22 @@ export function About() {
       <div className="relative mx-auto grid max-w-6xl gap-10 px-5 md:grid-cols-[1.15fr_1fr] md:items-center md:gap-16">
         <div>
           <SectionHeading id="about-title" title={about.heading} />
-          <p data-reveal className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+          <p data-reveal="left" className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
             {about.bio}
           </p>
           <div data-reveal>
             <h3 className="mt-10 font-sans text-xs font-extrabold tracking-[0.2em] text-magenta">{about.toolsHeading}</h3>
-            <ul className="mt-4 flex flex-wrap gap-2.5">
+            <ul data-reveal-stagger="zoom" className="mt-4 flex flex-wrap gap-2.5">
               {about.tools.map((t) => (
-                <li key={t} className="rounded-full border bg-card px-4 py-2 font-display text-base font-bold">
+                <li key={t} className="rounded-full border bg-card px-4 py-2 font-display text-base font-bold transition-[translate,border-color,box-shadow,color] duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary hover:shadow-card">
                   {t}
                 </li>
               ))}
             </ul>
           </div>
         </div>
-        <div data-reveal className="mx-auto w-full max-w-sm md:max-w-none">
+        <div data-reveal="right" className="mx-auto w-full max-w-sm md:max-w-none">
+          <div className="parallax-soft">
           <SmartImage
             src={brand.portrait}
             srcSet={`${brand.portraitSmall} 640w, ${brand.portrait} 1035w`}
@@ -37,6 +38,7 @@ export function About() {
             decoding="async"
             fallback={null}
           />
+          </div>
         </div>
       </div>
     </section>
