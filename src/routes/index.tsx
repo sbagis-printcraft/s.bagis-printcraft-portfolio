@@ -9,6 +9,7 @@ import { Services } from "@/components/site/Services";
 import { Contact } from "@/components/site/Contact";
 import { Quote } from "@/components/site/Quote";
 import { EnquiryPrompts } from "@/components/site/EnquiryPrompts";
+import { SiteHelper } from "@/components/site/SiteHelper";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { useReveal } from "@/lib/use-reveal";
 
@@ -58,6 +59,7 @@ function Index() {
       </main>
       <SiteFooter />
       <EnquiryPrompts />
+      <SiteHelper />
     </>
   );
 }

@@ -138,6 +138,70 @@ export const enquiry = {
   whatsappNumber: "",
 };
 
+/**
+ * Rule-based site helper. Every answer is built only from facts already on this
+ * site (services, About, WHY CHOOSE ME?, projects, the four social links) — no
+ * prices, timings, addresses, emails or phone numbers are stated.
+ */
+export const helper = {
+  name: "S.BAGIS Helper",
+  status: "Automated helper · instant answers",
+  launcher: "Ask S.BAGIS",
+  welcome:
+    "Hi there! 👋 I'm the S.BAGIS helper. I can tell you about our services, help you pick the right one, or get your quote started. What would you like to know?",
+  placeholder: "Type your question…",
+  quickQuestions: [
+    "What services do you offer?",
+    "Help me choose a service",
+    "How much does it cost?",
+    "How do I get a quote?",
+    "Can I see your work?",
+    "How can I contact you?",
+  ],
+  chooser: [
+    { label: "Building my brand", services: ["Branding", "Business Card", "ID Card", "Paper Bag", "T-Shirt"] },
+    { label: "An event or celebration", services: ["Wedding Program", "Frame & Surprise", "Souvenirs", "Mug Monogramming", "T-Shirt"] },
+    { label: "Signs for my shop or office", services: ["Indoor Signage", "Outdoor Signage", "Flex / SAV Printing"] },
+    { label: "Business paperwork", services: ["Receipt", "Invoice", "Calendar", "Business Card"] },
+    { label: "A gift for someone", services: ["Frame & Surprise", "Mug Monogramming", "Souvenirs", "T-Shirt"] },
+  ],
+  replies: {
+    greeting: "Hello! 😊 How can I help with your project today?",
+    services: "Here's everything we offer:",
+    serviceOne: (s: string) =>
+      `Yes — ${s} is one of our services. Tap below to start a quote with ${s} already selected, and add your details.`,
+    serviceMany: "We offer these — which one fits your project?",
+    choose: "Happy to help! What are you working on?",
+    chooserResult: (label: string) => `For “${label.toLowerCase()}”, these are a good fit:`,
+    price:
+      "Prices depend on the service, quantity and finish, so every quote is made for your project. Share your details in the quote form for an accurate price.",
+    timing:
+      "Timing depends on the project and quantity. Add your deadline to the project details in the quote form so it can be planned around you.",
+    location: "You can find us on our Google Business Profile — tap below to open it.",
+    contact: "The quickest way to reach us is WhatsApp. You can also send your project details through the quote form.",
+    contactNoWhatsApp: "The best way to reach us is the quote form — share your project details there.",
+    email: "There's no email address listed on this site — WhatsApp or the quote form are the best ways to reach us.",
+    quote:
+      "Getting a quote is easy: fill in your name, WhatsApp number, service and project details in the REQUEST A QUOTE form, then send it to us on WhatsApp.",
+    portfolio:
+      "Take a look at MY CREATIVE PROJECTS — branding & signage plus prints & souvenirs, with photos of real work.",
+    about: "We're a creative graphic design and printing business. Our creative tools are CorelDRAW and Adobe Photoshop.",
+    why: "Here's why clients choose us:",
+    thanks: "You're welcome! Anything else I can help with?",
+    bye: "Thanks for stopping by! Whenever you're ready, the quote form is right here. 👋",
+    fallback:
+      "I'm a simple helper and didn't quite catch that. Try one of these, or send your question through the quote form.",
+  },
+  actions: {
+    quote: "REQUEST A QUOTE",
+    quoteWith: (s: string) => `QUOTE FOR ${s.toUpperCase()}`,
+    whatsapp: "CHAT ON WHATSAPP",
+    projects: "VIEW PROJECTS",
+    google: "FIND US ON GOOGLE",
+    services: "SEE ALL SERVICES",
+  },
+};
+
 export const socials: SocialLink[] = [
   { id: "whatsapp", platform: "WhatsApp", label: "CHAT ON WHATSAPP", url: "https://wa.me/qr/QUWHJPPCKMHYF1" },
   { id: "tiktok", platform: "TikTok", label: "FOLLOW ON TIKTOK", url: "https://www.tiktok.com/@s.bagis_printcraft" },

@@ -1,4 +1,4 @@
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Check, ChevronDown, Copy, ExternalLink, MessageCircle } from "lucide-react";
 import { enquiry, services, socials } from "@/content/site";
 import { buildEnquiryMessage, enquirySchema, whatsappEnquiryHref, writePromptState, type EnquiryInput } from "@/lib/enquiry";
@@ -10,6 +10,7 @@ import { MotionBackdrop } from "./MotionBackdrop";
 type Field = keyof EnquiryInput;
 const empty: EnquiryInput = { name: "", whatsapp: "", service: "", details: "", quantity: "" };
 const order: Field[] = ["name", "whatsapp", "service", "details", "quantity"];
+export const QUOTE_PREFILL_EVENT = "sbagis:quote-service";
 const businessLink = socials.find((s) => s.id === "whatsapp")?.url ?? "";
 
 const fieldClass =
@@ -37,6 +38,18 @@ export function Quote() {
   const [copied, setCopied] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
+
+  // The site helper can pre-select a service before sending visitors here.
+  useEffect(() => {
+    const onPrefill = (e: Event) => {
+      const service = (e as CustomEvent<string>).detail;
+      if (!services.includes(service)) return;
+      setValues((v) => ({ ...v, service }));
+      setErrors(({ service: _cleared, ...rest }) => rest);
+    };
+    window.addEventListener(QUOTE_PREFILL_EVENT, onPrefill);
+    return () => window.removeEventListener(QUOTE_PREFILL_EVENT, onPrefill);
+  }, []);
 
   const set = (k: Field) => (e: { target: { value: string } }) => {
     setValues((v) => ({ ...v, [k]: e.target.value }));
