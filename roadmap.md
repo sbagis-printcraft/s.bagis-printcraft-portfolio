@@ -10,6 +10,8 @@
 - [x] Abstract motion background (hero, services band, faint in About / Quote / Contact)
 - [x] REQUEST A QUOTE form → WhatsApp (copy message + open existing link)
 - [x] Delayed enquiry pop-up and floating REQUEST A QUOTE button
+- [x] Pop-up trigger fix (9s or 30% scroll, ?popup=1 test) and site-wide motion
+- [x] Header scroll progress line
 - [ ] Rule-based site helper — deferred (scope)
 - [ ] Prefilled WhatsApp message — blocked: needs the owner's business WhatsApp number
 - [ ] Owner review of the preview before publishing

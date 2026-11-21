@@ -67,6 +67,7 @@ export function SiteHeader() {
       >
         Skip to content
       </a>
+      <span aria-hidden className="scroll-progress" />
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:h-20">
         <a href="#home" aria-label={`${brand.name} — back to top`} className="group rounded-xl">
           <BrandLockup />
